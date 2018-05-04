@@ -32,14 +32,24 @@ body {
     flex: 1;
 }
 
+.off {
+    display: none;
+}
+
+.on {
+    display: block;
+}
+
 /*******************/
 /****** Menu *******/
 /*******************/
 
 .site-menu {
     width: 15rem;
+    padding-top: 1rem;
     display: flex;
     flex-direction: column;
+    align-items: center;
     border-right: 1px solid black;
 }
 
@@ -52,7 +62,7 @@ body {
     align-items: center;
     justify-content: center;
     font-weight: bold;
-    position: relative;
+    width: 90%;
 }
 
 .site-menu a:hover, .menu-active {
@@ -173,6 +183,82 @@ body {
 
 .site-footer {
     text-align: center;
+    margin-top: 2rem;
+}
+
+/******************/
+/****** Home ******/
+/******************/
+
+.home {
+    text-align: center;
+}
+
+.last-projects {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.last-posts {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.last-posts article div {
+    text-align: justify;
+}
+
+.last-posts article div a {
+    font-size: 1.25rem;
+    text-decoration: none;
+    font-weight: bold;
+    color: black;
+}
+
+.last-posts article {
+    width: 350px;
+    margin: 1rem 40px;
+    box-shadow: 1px 1px 1px 1px;
+    transition: transform 0.3s;
+    padding: 1rem 1rem 0 1rem;
+ }
+
+.last-posts article h1 {
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+.last-posts article:hover {
+    transform: scale(1.1);
+}
+
+.contact-show {
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.contact-form input {
+    margin: 0.5rem;
+}
+
+/******************/
+/*** Portfolio ****/
+/******************/
+
+.portfolio {
+    text-align: center;
+    box-shadow: 1px 1px 1px 1px;
+    transition: transform 0.3s;
+}
+
+.portfolio:hover {
+    transform: scale(1.1);
+}
+
+.portfolio img {
+    width: 100%;
 }
 
 /*****************/
@@ -180,19 +266,14 @@ body {
 /*****************/
 
 #terminal {
-    display: none;
     position: absolute;
-    top: 50%;
-    left: 50%;
-    margin-top: -300px;
-    margin-left: -275px;
     width: 550px;
     height: 700px;
-    border: 1.5rem solid #65676b;
-    border-top: 2.5rem solid #65676b;
+    border: 1.5rem solid rgba(101, 103, 107, 0.6);
+    border-top: 2.5rem solid rgba(101, 103, 107, 0.6);
     border-radius: 15px;
     color: white;
-    background-color: rgba(43, 45, 47, 1);
+    background-color: rgba(43, 45, 47, 0.8);
     font-family: 'Play', sans-serif;
 }
 
@@ -205,14 +286,14 @@ body {
     left: 0;
 }
 
-#terminal::after {
-    content: '✖';
+.terminal-close {
     position: absolute;
     color: white;
     top: -2rem;
     right: 0;
     font-weight: bold;
     font-size: 1.25rem;
+    cursor: pointer;
 }
 
 #terminal:hover::after {
@@ -239,14 +320,14 @@ body {
     height: 2rem;
     display: flex;
     flex-direction: row;
-    border-top: 0.75rem solid #65676b;
+    border-top: 0.75rem solid rgba(101, 103, 107, 0.6);
     justify-content: space-between;
-    background-color: #65676b;
+    background-color: rgba(101, 103, 107, 0.6);
 }
 
 .terminal-input {
     flex: 1;
-    background-color: #2B2D2F;
+    background-color: rgba(43, 45, 47, 0.5);
     color: white;
     font-family: 'Play', sans-serif;
     height: inherit;
@@ -262,7 +343,7 @@ body {
     width: 15%;
     border-color: grey;
     margin: 0 0 0 5px;
-    background-color: #65676b;
+    background-color: rgba(101, 103, 107, 0.6);
     color: white;
 }
 
@@ -282,12 +363,13 @@ body {
     font-size: 1rem;
     background: #fff url('../images/blog/cogs.png') no-repeat 1% 50% / auto 80%;
     position: absolute;
-    width: 10rem;
+    width: 12rem;
     padding: .5rem 0 .5rem 4rem;
     box-shadow: 0 0 5px rgba(0, 0, 0, .25);
     transform: translate(0, -105%);
     transition: all .25s ease-in-out;
     opacity: 0;
+    text-align: center;
 }
 
 .terminal-button:hover::after {
