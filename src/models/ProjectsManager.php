@@ -10,4 +10,14 @@ use niluap\core\Manager;
  */
 class ProjectsManager extends Manager {
 
+    public function lastAddedProjects() {
+        $req = $this->query(
+            'SELECT *
+                        FROM projects
+                        ORDER BY id DESC
+                        LIMIT 0, 2
+                        ');
+        return $req;
+    }
+
 }

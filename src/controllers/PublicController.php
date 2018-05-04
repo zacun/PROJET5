@@ -2,6 +2,8 @@
 namespace niluap\src\controllers;
 
 use niluap\core\Controller;
+use niluap\src\models\PostsManager;
+use niluap\src\models\ProjectsManager;
 
 /**
  * Class PublicController
@@ -11,7 +13,11 @@ use niluap\core\Controller;
 class PublicController extends Controller {
 
     public function homePage() {
-        $this->render('public/home');
+        $projectsManager = new ProjectsManager();
+        $postsManager = new PostsManager();
+        $lastAddedPosts = $postsManager->lastAddedPosts();
+        $lastAddedProjects = $projectsManager->lastAddedProjects();
+        $this->render('public/home', compact('lastAddedPosts', 'lastAddedProjects'));
     }
 
     public function blogPage() {
