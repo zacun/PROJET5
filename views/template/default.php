@@ -1,3 +1,8 @@
+<?php
+
+use niluap\core\Alert;
+use niluap\core\Router;
+?>
 <!DOCTYPE html>
 <html lang="fr_FR">
 
@@ -8,18 +13,19 @@
     <link href="https://fonts.googleapis.com/css?family=Play|Poppins" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>Niluap - <?= $title; ?></title>
+    <title>Niluap :: <?= $title; ?></title>
 </head>
 
 <body>
 <div class="site">
     <nav class="site-menu">
-        <a href="#">Accueil</a>
-        <a href="#">Blog</a>
-        <a href="#">Portfolio</a>
-        <a href="#">C.V</a>
+        <a href="<?= Router::getUrl('accueil')?>">Accueil</a>
+        <a href="<?= Router::getUrl('blog')?>">Blog</a>
+        <a href="<?= Router::getUrl('portfolio')?>">Portfolio</a>
+        <a href="<?= Router::getUrl('cv')?>">C.V</a>
     </nav>
     <div class="site-content">
+        <?php Alert::getAlert(); ?>
         <header class="site-header">
             <h1 class="site-header__title">Bat Paulin</h1>
             <p class="site-header__description">
