@@ -1,6 +1,5 @@
 <?php
 namespace niluap\core;
-
 /**
  * Class Router
  * @package niluap\core
@@ -8,6 +7,21 @@ namespace niluap\core;
  * The routes are stocked in a .json file.
  */
 class Router {
+
+    private static $routes;
+
+    public function __construct() {
+        $this->getRoutes();
+    }
+
+    /**
+     * Read routes.json and convert it to php array.
+     */
+    private function getRoutes() {
+        $json_file = file_get_contents('../core/routes.json');
+        $jsonToArray = json_decode($json_file, true);
+        self::$routes = $jsonToArray;
+    }
 
     /**
      * @return mixed|string
@@ -40,7 +54,7 @@ class Router {
         }
         $controller = $controllerAndMethod[0];
         $method = $controllerAndMethod[1];
-        $controller = 'projet4\src\controller\\' . $controller;
+        $controller = 'niluap\src\controllers\\' . $controller;
         $controllerClass = new $controller;
         $controllerClass->$method();
     }

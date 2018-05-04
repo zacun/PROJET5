@@ -1,3 +1,6 @@
 {
-
+  "accueil": {
+    "path": "/",
+    "run": "PublicController@home"
+  }
 }
