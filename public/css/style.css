@@ -55,8 +55,9 @@ body {
     position: relative;
 }
 
-.site-menu a:hover {
-    background-color: rgba(57, 62, 68, 0.3);
+.site-menu a:hover, .menu-active {
+    background-color: #f7f7f7;
+    box-shadow: 1px 1px 1px 1px inset;
 }
 
 .site-menu a::before {
@@ -163,6 +164,7 @@ body {
 
 .site-main {
     flex: 1;
+    margin: auto;
 }
 
 /******************/
