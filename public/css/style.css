@@ -1,0 +1,317 @@
+/*******************/
+/***** General *****/
+/*******************/
+
+*,
+*::after,
+*::before {
+    box-sizing: inherit;
+}
+
+html {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    border: 2.5rem solid #f6f6f6;
+}
+
+.site {
+    min-height: calc(100vh - 5rem);
+    display: flex;
+    align-items: stretch;
+    border: 1px solid #4ba7f2;
+    box-shadow: 1px 1px 1px 1px;
+}
+
+.site-content {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+/*******************/
+/****** Menu *******/
+/*******************/
+
+.site-menu {
+    width: 15rem;
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid black;
+}
+
+.site-menu a {
+    color: black;
+    text-decoration: none;
+    height: 5rem;
+    font-size: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    position: relative;
+}
+
+.site-menu a:hover {
+    background-color: rgba(57, 62, 68, 0.3);
+}
+
+.site-menu a::before {
+    content: '<';
+    display: inline-block;
+    position: absolute;
+    transition: all ease-in-out .25s;
+    opacity: 0;
+}
+
+.site-menu a::after {
+    content: '>';
+    display: inline-block;
+    position: absolute;
+    transition: all ease-in-out .3s;
+    opacity: 0;
+}
+
+.site-menu a:hover::before {
+    opacity: 1;
+    transform: translateX(-6rem);
+}
+
+.site-menu a:hover::after {
+    opacity: 1;
+    transform: translateX(6rem);
+}
+
+/******************/
+/***** Header *****/
+/******************/
+
+.site-header {
+    text-align: center;
+}
+
+.site-header__title {
+    font-size: 3.5rem;
+    margin: 0;
+}
+
+.site-header__description {
+    font-size: 1.5rem;
+    margin: 0.5rem 0;
+}
+
+.site-header__description a {
+    text-decoration: none;
+    transition: color 0.3s;
+    cursor: pointer;
+}
+
+.site-header__description a::after {
+    content: attr(data-tooltip);
+    color: black;
+    font-size: .8rem;
+    background: #fff url('../../public/images/blog/link.png') no-repeat 1% 50% / auto 80%;
+    padding: .25rem .25rem .25rem 1.7rem;
+    position: absolute;
+    box-shadow: 0 0 5px rgba(0, 0, 0, .25);
+    transition: .25s ease;
+    transform: translate(-100%, -50%);
+    opacity: 0;
+}
+
+.site-header__description a:hover {
+    color: coral;
+}
+
+.site-header__description a:hover::after {
+    opacity: 1;
+    transform: translate(20%, 0);
+}
+
+.site-header__progressBar p {
+    margin-bottom: 5px;
+    padding: 0;
+}
+
+.progressBar__container {
+    height: 25px;
+    width: 20rem;
+    margin: auto;
+    padding: 4px;
+    background-color: #f6f6f6;
+    border-radius: 16px;
+    box-shadow: 1px 1px 1px 1px inset;
+}
+
+.progressBar__content {
+    height: 100%;
+    width: 80%;
+    background: #4ba7f2;
+    border-radius: 16px;
+    box-shadow: 1px 1px 1px 1px black;
+    color: white;
+    font-weight: bold;
+    font-size: 0.95em;
+}
+
+/*******************/
+/******* Main ******/
+/*******************/
+
+.site-main {
+    flex: 1;
+}
+
+/******************/
+/***** Footer *****/
+/******************/
+
+.site-footer {
+    text-align: center;
+}
+
+/*****************/
+/*** Terminal ****/
+/*****************/
+
+#terminal {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -300px;
+    margin-left: -275px;
+    width: 550px;
+    height: 700px;
+    border: 1.5rem solid #65676b;
+    border-top: 2.5rem solid #65676b;
+    border-radius: 15px;
+    color: white;
+    background-color: rgba(43, 45, 47, 1);
+    font-family: 'Play', sans-serif;
+}
+
+#terminal::before {
+    content: "Terminal de navigation";
+    position: absolute;
+    color: white;
+    font-weight: bold;
+    top: -1.75rem;
+    left: 0;
+}
+
+#terminal::after {
+    content: '✖';
+    position: absolute;
+    color: white;
+    top: -2rem;
+    right: 0;
+    font-weight: bold;
+    font-size: 1.25rem;
+}
+
+#terminal:hover::after {
+    cursor: pointer;
+}
+
+.terminal-form {
+    display: flex;
+    flex-direction: column;
+    height: calc(700px - 4rem);
+    /* terminal height minus border */
+}
+
+.terminal-screen {
+    flex: 1;
+    margin: 1rem;
+}
+
+.terminal-screen p {
+    margin: 5px;
+}
+
+.terminal-inputs {
+    height: 2rem;
+    display: flex;
+    flex-direction: row;
+    border-top: 0.75rem solid #65676b;
+    justify-content: space-between;
+    background-color: #65676b;
+}
+
+.terminal-input {
+    flex: 1;
+    background-color: #2B2D2F;
+    color: white;
+    font-family: 'Play', sans-serif;
+    height: inherit;
+    border: none;
+    padding: 0 5px 0 5px;
+    margin: 0 5px 0 0;
+    font-size: 1.25rem;
+    outline: none;
+}
+
+.terminal-submit {
+    height: inherit;
+    width: 15%;
+    border-color: grey;
+    margin: 0 0 0 5px;
+    background-color: #65676b;
+    color: white;
+}
+
+.terminal-submit:focus {
+    outline: none;
+}
+
+.terminal-button {
+    position: fixed;
+    right: 3rem;
+    top: 3rem;
+}
+
+.terminal-button::after {
+    content: attr(data-tooltip);
+    color: black;
+    font-size: 1rem;
+    background: #fff url('../images/blog/cogs.png') no-repeat 1% 50% / auto 80%;
+    position: absolute;
+    width: 10rem;
+    padding: .5rem 0 .5rem 4rem;
+    box-shadow: 0 0 5px rgba(0, 0, 0, .25);
+    transform: translate(0, -105%);
+    transition: all .25s ease-in-out;
+    opacity: 0;
+}
+
+.terminal-button:hover::after {
+    opacity: 1;
+    transform: translate(-110%, -105%);
+}
+
+.terminal-button:hover {
+    cursor: pointer;
+}
+
+/*****************/
+/***** Media *****/
+/*****************/
+
+@media screen and (max-width: 1100px) {
+    body {
+        border: 1rem solid #f6f6f6;
+    }
+    .site {
+        min-height: calc(100vh - 2rem);
+    }
+    .progressBar__container {
+        width: 14rem;
+    }
+    .site-header__description a::after {
+        display: none;
+    }
+}
