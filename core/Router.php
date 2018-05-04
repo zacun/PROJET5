@@ -29,7 +29,6 @@ class Router {
      */
     private function getPath() {
         $url = $_SERVER['REQUEST_URI'];
-        $url = str_replace(BASE_URL, '', $url);
         $url = strtok($url, '?');
         return $url;
     }
@@ -49,7 +48,7 @@ class Router {
         }
         if (!isset($controllerAndMethod)) {
             Alert::setAlert('L\'adresse demandée n\'existe pas.', 'error');
-            header('Location: ' . BASE_URL . '/');
+            header('Location: ' . Router::getUrl('accueil'));
             exit();
         }
         $controller = $controllerAndMethod[0];
@@ -65,7 +64,7 @@ class Router {
      * Generate an URL depending on the needed route
      */
     public static function getUrl(string $route) {
-        $url = BASE_URL . self::$routes[$route]['path'];
+        $url = self::$routes[$route]['path'];
         return $url;
     }
 }

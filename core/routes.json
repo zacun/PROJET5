@@ -1,6 +1,22 @@
 {
   "accueil": {
     "path": "/",
-    "run": "PublicController@home"
+    "run": "PublicController@homePage"
+  },
+  "blog": {
+    "path": "/blog",
+    "run": "PublicController@blogPage"
+  },
+  "portfolio": {
+    "path": "/portfolio",
+    "run": "PublicController@portfolioPage"
+  },
+  "cv": {
+    "path": "/curriculum-vitae",
+    "run": "PublicController@cvPage"
+  },
+  "blog-post": {
+    "path": "/blog-post",
+    "run": "PublicController@singlePostPage"
   }
 }
