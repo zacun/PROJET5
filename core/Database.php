@@ -25,7 +25,7 @@ class Database {
      */
     public static function getInstance() {
         if (is_null(self::$_instance)) {
-            self::$_instance = new Database('niluap');
+            self::$_instance = new Database('projet5');
         }
         return self::$_instance;
     }
