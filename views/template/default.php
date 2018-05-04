@@ -51,7 +51,8 @@ use niluap\core\Router;
     </div>
 </div>
 <!-- Terminal window -->
-<div id="terminal">
+<div id="terminal" class="off">
+    <span class="terminal-close">✖</span>
     <form class="terminal-form">
         <div class="terminal-screen">
             <p>Ceci est un terminal de navigation.</p>
@@ -64,10 +65,15 @@ use niluap\core\Router;
         </div>
     </form>
 </div>
-<div class="terminal-button" data-tooltip="Ouvrir le terminal">
+<div class="terminal-button" data-tooltip="Ouvrir/Fermer le terminal">
     <i class="fas fa-window-maximize fa-5x"></i>
 </div>
 <!-- End of terminal window -->
+
+<!-- Scripts -->
+<script src="../../public/js/terminal.js"></script>
+<script src="../../public/js/contact.js"></script>
+<!-- End of scripts -->
 </body>
 
 </html>
