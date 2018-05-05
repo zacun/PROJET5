@@ -1,6 +1,7 @@
 <?php
 
 use niluap\core\Controller;
+use niluap\core\Router;
 
 $title = 'Accueil';
 ?>
@@ -8,11 +9,11 @@ $title = 'Accueil';
     <h2>Derniers Projets</h2>
     <div class="last-projects">
         <?php foreach ($lastAddedProjects as $lastProject): ?>
-            <figure class="portfolio">
+            <figure class="portfolio-item">
                 <a href="<?= $lastProject['path'] ?>"><img src="<?= $lastProject['image_path'] ?>" alt="<?= $lastProject['name'] ?>" /></a>
                 <figcaption>
                     <p>
-                        <?= $lastProject['name'] ?><br /> <?= $lastProject['description'] ?>
+                        <?= $lastProject['name'] ?><br /><?= $lastProject['description'] ?>
                     </p>
                 </figcaption>
             </figure>
@@ -27,7 +28,7 @@ $title = 'Accueil';
                 <h1><?= $lastPost['title']; ?></h1>
                 <div>
                     <?= Controller::getExcerpt($lastPost['content'], 150); ?>
-                    <a href="#">-> Lire la suite</a>
+                    <a href="<?= Router::getUrl('blog-post') . '?id=' . $lastPost['id'] ?>">-> Lire la suite</a>
                 </div>
                 <small>Publié le <?= $lastPost['date_fr'] ?></small>
             </article>
@@ -56,3 +57,5 @@ $title = 'Accueil';
         </form>
     </div>
 </section>
+
+<script src="../../public/js/contact.js"></script>

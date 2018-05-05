@@ -1,5 +1,4 @@
 <?php
-
 use niluap\core\Alert;
 use niluap\core\Router;
 ?>
@@ -7,9 +6,9 @@ use niluap\core\Router;
 <html lang="fr_FR">
 
 <head>
-    <meta charset="UTF-8" />
-    <link rel="stylesheet" href="../../public/css/style.css">
-    <link rel="icon" type="image/png" href="../../public/images/favicon/favicon.png">
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="/public/css/style.css">
+    <link rel="icon" type="image/png" href="/public/images/favicon/favicon.png">
     <link href="https://fonts.googleapis.com/css?family=Play|Poppins" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
@@ -72,7 +71,6 @@ use niluap\core\Router;
 
 <!-- Scripts -->
 <script src="../../public/js/terminal.js"></script>
-<script src="../../public/js/contact.js"></script>
 <!-- End of scripts -->
 </body>
 
