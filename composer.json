@@ -1,7 +1,8 @@
 {
     "name": "niluap/projet5",
     "require": {
-        "twig/twig": "^2.4"
+        "twig/twig": "^2.4",
+        "twig/extensions": "^1.5"
     },
     "authors": [
         {
