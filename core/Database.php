@@ -43,7 +43,7 @@ class Database {
      */
     public function getPDO() {
         if (is_null($this->pdo)) {
-            $pdo = new PDO('mysql:host=' . $this->db_host . ';dbname=' . $this->db_name . ';charset=UTF8', $this->db_user, $this->db_password);
+            $pdo = new PDO('mysql:host=' . $this->db_host . ';dbname=' . $this->db_name . ';charset=UTF8', $this->db_user, $this->db_password, array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET lc_time_names='fr_FR'"));
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $this->pdo = $pdo;
         }

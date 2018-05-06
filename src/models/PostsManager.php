@@ -12,7 +12,7 @@ class PostsManager extends Manager {
 
     public function getAllPosts() {
         $req = $this->query(
-            'SELECT id, title, DATE_FORMAT(post_date, \'%d/%m/%Y\') AS date_fr
+            'SELECT id, title, DATE_FORMAT(post_date, \'%d %M %Y\') AS date_fr
                         FROM posts 
                         ORDER BY post_date DESC 
                         ');
@@ -21,7 +21,7 @@ class PostsManager extends Manager {
 
     public function lastAddedPosts() {
         $req = $this->query(
-            'SELECT id, title, content, DATE_FORMAT(post_date, \'%d/%m/%Y\') AS date_fr 
+            'SELECT id, title, content, DATE_FORMAT(post_date, \'%d %M %Y\') AS date_fr 
                         FROM posts
                         ORDER BY post_date DESC
                         LIMIT 0, 2
@@ -31,7 +31,7 @@ class PostsManager extends Manager {
 
     public function getOnePost($postId) {
         $req = $this->prepare(
-            'SELECT id, title, content, DATE_FORMAT(post_date, \'%d/%m/%Y à %Hh%imin\') AS date_fr 
+            'SELECT id, title, content, DATE_FORMAT(post_date, \'%d %M %Y à %Hh%i\') AS date_fr 
                         FROM posts
                         WHERE id = ?',
                         array($postId), true, true
