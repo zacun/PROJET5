@@ -27,7 +27,7 @@ class Router {
      * @return mixed|string
      * Get a path needed for dispatch() function
      */
-    private function getPath() {
+    private static function getPath() {
         $url = $_SERVER['REQUEST_URI'];
         $url = strtok($url, '?');
         return $url;
@@ -39,7 +39,7 @@ class Router {
      * it will chose which Controller & method is needed.
      */
     public function dispatch() {
-        $path = $this->getPath();
+        $path = self::getPath();
         foreach (self::$routes as $key => $values) {
             if ($path == $values['path']) {
                 $controllerAndMethod = explode('@', $values['run']);
@@ -66,5 +66,14 @@ class Router {
     public static function getUrl(string $route) {
         $url = self::$routes[$route]['path'];
         return $url;
+    }
+
+    public static function getActiveMenu($url) {
+        $actualUrl = self::getPath();
+        if ($url === $actualUrl) {
+            return 'class=menu-active';
+        } else {
+            return '';
+        }
     }
 }
