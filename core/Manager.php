@@ -34,7 +34,7 @@ class Manager {
      */
     public function prepare($SqlStatement, $attributes, $fetch = false, $needOnlyOne = false) {
         $req = $this->dbConnect()->prepare($SqlStatement);
-        $newContent = $req->execute($attributes);
+        $data = $req->execute($attributes);
         if ($fetch) {
             if ($needOnlyOne) {
                 $data = $req->fetch();
@@ -43,7 +43,7 @@ class Manager {
             }
             return $data;
         }
-        return $newContent;
+        return $data;
     }
 
     /**
@@ -54,10 +54,10 @@ class Manager {
      * If $data is empty then the controller will make an alert message.
      */
     public function exist($table, $id) {
-        $SqlStatement = 'SELECT * FROM ' . $table . ' WHERE id = ?';
+        $SqlStatement = 'SELECT id FROM ' . $table . ' WHERE id = ?';
         $req = $this->dbConnect()->prepare($SqlStatement);
         $req->execute(array($id));
-        $data = $req->fetchAll();
+        $data = $req->fetch();
         return $data;
     }
 
