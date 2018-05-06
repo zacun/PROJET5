@@ -70,6 +70,7 @@ class Router {
 
     public static function getActiveMenu($url) {
         $actualUrl = self::getPath();
+        $actualUrl = str_replace('/post', '', $actualUrl);
         if ($url === $actualUrl) {
             return 'class=menu-active';
         } else {
