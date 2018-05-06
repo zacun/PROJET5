@@ -20,13 +20,13 @@ class PublicController extends Controller {
         $lastAddedProjects = $projectsManager->lastAddedProjects();
         $postsManager = new PostsManager();
         $lastAddedPosts = $postsManager->lastAddedPosts();
-        $this->render('public/home', compact('lastAddedPosts', 'lastAddedProjects'));
+        $this->render('home.twig', compact('lastAddedPosts', 'lastAddedProjects'));
     }
 
     public function blogPage() {
         $postsManager = new PostsManager();
         $allPosts = $postsManager->getAllPosts();
-        $this->render('public/blog', compact('allPosts'));
+        $this->render('blog.twig', compact('allPosts'));
     }
 
     public function singlePostPage() {
@@ -40,17 +40,17 @@ class PublicController extends Controller {
         }
         $singlePost = $postsManager->getOnePost(htmlspecialchars($_GET['id']));
         $commentsByPost = $commentsManager->getCommentsByPost(htmlspecialchars($_GET['id']));
-        $this->render('public/singlePost', compact('singlePost', 'commentsByPost'));
+        $this->render('singlePost.twig', compact('singlePost', 'commentsByPost'));
     }
 
     public function portfolioPage() {
         $projectsManager = new ProjectsManager();
         $allProjects = $projectsManager->getAllProjects();
-        $this->render('public/portfolio', compact('allProjects'));
+        $this->render('portfolio.twig', compact('allProjects'));
     }
 
     public function cvPage() {
-        $this->render('public/cv');
+        $this->render('cv.twig');
     }
 
 
