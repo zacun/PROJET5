@@ -1,0 +1,18 @@
+{% extends 'default.twig' %}
+{% block title 'Portfolio' %}
+{% block main %}
+    <section class="portfolio">
+        <h2>Liste des projets</h2>
+        <p>Les projets sont classés des plus récents aux plus anciens</p>
+        <div class="portfolio-container">
+            {% for project in allProjects %}
+                <figure class="portfolio-item">
+                    <a href="{{ project.path }}"><img src="{{ project.image_path }}" alt="{{ project.name }}" /></a>
+                    <figcaption>
+                        <p>{{ project.name }}><br />{{ project.description }}</p>
+                    </figcaption>
+                </figure>
+            {% endfor %}
+        </div>
+    </section>
+{% endblock %}

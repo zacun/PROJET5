@@ -1,7 +1,3 @@
-<?php
-use niluap\core\Alert;
-use niluap\core\Router;
-?>
 <!DOCTYPE html>
 <html lang="fr_FR">
 
@@ -12,19 +8,21 @@ use niluap\core\Router;
     <link href="https://fonts.googleapis.com/css?family=Play|Poppins" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>Niluap :: <?= $title; ?></title>
+    <title>Niluap :: {% block title '' %}</title>
 </head>
 
 <body>
 <div class="site">
     <nav class="site-menu">
-        <a href="<?= Router::getUrl('accueil')?>">Accueil</a>
-        <a href="<?= Router::getUrl('blog')?>">Blog</a>
-        <a href="<?= Router::getUrl('portfolio')?>">Portfolio</a>
-        <a href="<?= Router::getUrl('cv')?>">C.V</a>
+        <div>
+            <a {{ 'accueil'|getUrl|getActiveMenu }} href="{{ 'accueil'|getUrl }}">Accueil</a>
+            <a {{ 'blog'|getUrl|getActiveMenu }} href="{{ 'blog'|getUrl }}">Blog</a>
+            <a {{ 'portfolio'|getUrl|getActiveMenu }} href="{{ 'portfolio'|getUrl }}">Portfolio</a>
+            <a {{ 'cv'|getUrl|getActiveMenu }} href="{{ 'cv'|getUrl }}">C.V</a>
+        </div>
     </nav>
     <div class="site-content">
-        <?php Alert::getAlert(); ?>
+        {{ getAlert() }}
         <header class="site-header">
             <h1 class="site-header__title">Bat Paulin</h1>
             <p class="site-header__description">
@@ -42,10 +40,10 @@ use niluap\core\Router;
             </div>
         </header>
         <main class="site-main">
-            <?= $content; ?>
+            {% block main %}{% endblock %}
         </main>
         <footer class="site-footer">
-            <div>&copy; 2018 - Bat Paulin - All Rights Reserved</div>
+            <div>&copy; {{ "now"|date('Y', timezone="Europe/Paris") }} - Bat Paulin - All Rights Reserved</div>
         </footer>
     </div>
 </div>
@@ -69,9 +67,9 @@ use niluap\core\Router;
 </div>
 <!-- End of terminal window -->
 
-<!-- Scripts -->
-<script src="../../public/js/terminal.js"></script>
-<!-- End of scripts -->
+<script src="/public/js/terminal.js"></script>
+{% block scripts %}
+{% endblock %}
 </body>
 
 </html>

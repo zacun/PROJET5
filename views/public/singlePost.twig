@@ -1,0 +1,36 @@
+{% extends 'default.twig' %}
+{% block title singlePost.title %}
+{% block main %}
+    <section class="singlepost-post">
+        <h1 class="singlepost-title">{{ singlePost.title }}</h1>
+        <p class="singlepost-date">Publié le {{ singlePost.date_fr }}</p>
+        <div class="singlepost-content">{{ singlePost.content }}</div>
+    </section>
+    <section class="singlepost-comments">
+        <h2>Commentaires</h2>
+        <p>Les commentaires sont classés du plus récent au plus ancien.</p>
+        <div class="singlepost-comments__add">
+            <div class="show-comment-form">+ Ajouter un commentaire</div>
+            <form class="comment-form off">
+                <input type="text" title="comment-author" id="comment-author" name="comment-author" placeholder="Votre pseudo..." required><br>
+                <textarea title="comment-message" id="comment-message" name="comment-message" cols="60" rows="5" placeholder="Votre commentaire..."></textarea><br>
+                <button type="submit">Commenter !</button>
+            </form>
+        </div>
+        <div class="singlepost-comments__container">
+            {% for comment in commentsByPost %}
+                <div class="comment">
+                    <div>
+                        <p><strong>{{ comment.author }}</strong>,</p>
+                        <p><small>le {{ comment.date_fr }}</small></p>
+                    </div>
+                    <p>{{ comment.content }}</p>
+                </div>
+            {% endfor %}
+        </div>
+    </section>
+{% endblock %}
+
+{% block scripts %}
+    <script src="../../public/js/comment.js"></script>
+{% endblock %}
