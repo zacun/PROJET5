@@ -17,11 +17,14 @@ class Controller {
 
     public function __construct() {
         $loader = new Twig_Loader_Filesystem($this->viewsPaths);
-        $this->twig = new Twig_Environment($loader, []);
+        $this->twig = new Twig_Environment($loader, [
+            'cache' => false
+        ]);
         $this->twig->addFilter($this->twigGetUrl());
         $this->twig->addFilter($this->twigGetActiveMenu());
         $this->twig->addFilter($this->twigGetExcerpt());
         $this->twig->addFunction($this->twigGetAlert());
+        $this->twig->addGlobal('session', $_SESSION);
     }
 
     /**
