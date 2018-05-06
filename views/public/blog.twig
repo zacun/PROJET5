@@ -11,7 +11,7 @@
                     <h1 class="blog-post-title">{{ post.title }}</h1>
                     <div class="blog-post-info">
                         <span>Publié le {{ post.date_fr }}</span>
-                        <a href="{{ 'blog-post'|getUrl ~ '?id=' ~ post.id }}">-> Lire l'article</a>
+                        <a href="{{ 'article'|getUrl ~ '?id=' ~ post.id }}">-> Lire l'article</a>
                     </div>
                 </article>
             {% endfor %}
