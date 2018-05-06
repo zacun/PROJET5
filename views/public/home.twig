@@ -22,7 +22,7 @@
                     <h1>{{ lastPost.title }}</h1>
                     <div>
                         {{ lastPost.content|excerpt(150, true) }}
-                        <a href="{{ 'blog-post'|getUrl ~ '?id=' ~ lastPost.id }}">-> Lire la suite</a>
+                        <a href="{{ 'article'|getUrl ~ '?id=' ~ lastPost.id }}">-> Lire la suite</a>
                     </div>
                     <small>Publié le {{ lastPost.date_fr }}</small>
                 </article>
@@ -42,11 +42,11 @@
         </p>
         <div class="contact">
             <p class="contact-show"><span class="contact-show-message">+ Afficher</span> le formulaire de contact</p>
-            <form class="contact-form off">
-                <input type="text" title="contact-name" id="contact-name" name="contact-name" placeholder="Votre nom..." required>
-                <input type="email" title="contact-mail" id="contact-mail" name="contact-mail" placeholder="Votre mail..." required><br>
-                <input type="text" title="contact-subject" id="contact-subject" name="contact-subject" placeholder="Sujet..." required><br>
-                <textarea title="contact-message" id="contact-message" name="contact-message" placeholder="Votre message..." cols="80" rows="20" required></textarea><br>
+            <form action="{{ 'contactForm'|getUrl }}" method="post" class="contact-form off">
+                <input type="text" title="contact-name" id="contact-name" name="contact-name" placeholder="Votre nom..." value="{{ name }}" required>
+                <input type="email" title="contact-mail" id="contact-mail" name="contact-mail" placeholder="Votre mail..." value="{{ mail }}" required><br>
+                <input type="text" title="contact-subject" id="contact-subject" name="contact-subject" placeholder="Sujet..." value="{{ subject }}" required><br>
+                <textarea title="contact-message" id="contact-message" name="contact-message" placeholder="Votre message..." cols="80" rows="20" required>{{ message }}</textarea><br>
                 <button type="submit">Envoyer</button>
             </form>
         </div>

@@ -11,9 +11,9 @@
         <p>Les commentaires sont classés du plus récent au plus ancien.</p>
         <div class="singlepost-comments__add">
             <div class="show-comment-form">+ Ajouter un commentaire</div>
-            <form class="comment-form off">
+            <form action="{{ 'postComment'|getUrl ~ '?postId=' ~ singlePost.id }}" method="post" class="comment-form off">
                 <input type="text" title="comment-author" id="comment-author" name="comment-author" placeholder="Votre pseudo..." required><br>
-                <textarea title="comment-message" id="comment-message" name="comment-message" cols="60" rows="5" placeholder="Votre commentaire..."></textarea><br>
+                <textarea title="comment-content" id="comment-content" name="comment-content" cols="60" rows="5" placeholder="Votre commentaire..."></textarea><br>
                 <button type="submit">Commenter !</button>
             </form>
         </div>

@@ -15,8 +15,20 @@
     "path": "/curriculum-vitae",
     "run": "PublicController@cvPage"
   },
-  "blog-post": {
-    "path": "/blog-post",
+  "article": {
+    "path": "/blog/post",
     "run": "PublicController@singlePostPage"
+  },
+  "postComment": {
+    "path": "/postComment",
+    "run": "PublicController@postComment"
+  },
+  "contactForm": {
+    "path": "/",
+    "run": "PublicController@homePage"
+  },
+  "admin": {
+    "path": "/admin",
+    "run": "AdminController@adminPage"
   }
 }
