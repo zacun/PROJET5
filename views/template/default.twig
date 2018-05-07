@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr_FR">
+<html lang="fr">
 
 <head>
     <meta charset="utf-8">
@@ -15,8 +15,13 @@
 <div class="site">
     <nav class="site-menu">
         <div>
-            <a {{ 'accueil'|getUrl|getActiveMenu }} href="{{ 'accueil'|getUrl }}">Accueil</a>
-            <a {{ 'blog'|getUrl|getActiveMenu }} href="{{ 'blog'|getUrl }}">Blog</a>
+            <a {{ 'home'|getUrl|getActiveMenu }} href="{{ 'home'|getUrl }}">Accueil</a>
+            <a {{ 'blog'|getUrl|getActiveMenu }} href="{{ 'blog'|getUrl }}">
+                <div>Blog</div>
+                {% if singlePost.title %}
+                    <div class="article-name">{{ singlePost.title }}</div>
+                {% endif %}
+            </a>
             <a {{ 'portfolio'|getUrl|getActiveMenu }} href="{{ 'portfolio'|getUrl }}">Portfolio</a>
             <a {{ 'cv'|getUrl|getActiveMenu }} href="{{ 'cv'|getUrl }}">C.V</a>
             {% if session.admin %}
@@ -35,7 +40,7 @@
             </p>
             <div class="site-header__progressBar">
                 <p>
-                    Progression de la formation à 80%.<br>Obtention du diplôme estimée pour fin Mai 2018.
+                    Progression de la formation à 85%.<br>Obtention du diplôme estimée pour fin Mai 2018.
                 </p>
                 <div class="progressBar__container">
                     <div class="progressBar__content"></div>

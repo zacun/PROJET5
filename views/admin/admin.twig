@@ -1,0 +1,57 @@
+{% extends 'defaultAdmin.twig' %}
+{% block title 'Admin' %}
+{% block mainAdmin %}
+    <div class="list-container">
+        <section class="articles-list">
+            <h2>Liste des articles</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Date d'ajout</th>
+                        <th>Titre</th>
+                        <th>Editer</th>
+                        <th>Supprimer</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for post in allPosts %}
+                    <tr>
+                        <td>{{ post.id }}</td>
+                        <td>{{ post.date_fr }}</td>
+                        <td><a href="{{ 'article'|getUrl ~ '?id=' ~ post.id }}">{{ post.title }}</a></td>
+                        <td><a href="{{ 'editPost'|getUrl ~ '?id=' ~ post.id }}"><i class="fas fa-edit"></i></a></td>
+                        <td><a href="{{ 'deletePost'|getUrl ~ '?id=' ~ post.id }}"><i class="fas fa-trash"></i></a></td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </section>
+        <hr>
+        <section class="projects-list">
+            <h2>Liste des projets</h2>
+            <table>
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nom</th>
+                    <th>Description</th>
+                    <th>Editer</th>
+                    <th>Supprimer</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for project in allProjects %}
+                    <tr>
+                        <td>{{ project.id }}</td>
+                        <td><a href="{{ project.path }}">{{ project.name }}</a></td>
+                        <td>{{ project.description }}</td>
+                        <td><a href="{{ 'editProject'|getUrl ~ '?id=' ~ project.id }}"><i class="fas fa-edit"></i></a></td>
+                        <td><a href="{{ 'deleteProject'|getUrl ~ '?id=' ~ project.id }}"><i class="fas fa-trash"></i></a></td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </section>
+    </div>
+{% endblock %}
