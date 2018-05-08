@@ -1,7 +1,7 @@
 {% extends 'defaultAdmin.twig' %}
 {% block title 'Nouvel article' %}
 {% block mainAdmin %}
-    <section>
+    <section class="form-post">
         <h2>Nouvel article</h2>
         <form action="{{ 'newPost'|getUrl }}" method="post">
             <p>
@@ -21,7 +21,9 @@
     <script>
         tinymce.init({
             selector:'textarea',
-            resize: 'both'
+            resize: 'both',
+            height: '500',
+            width: '1000'
         });
     </script>
 {% endblock %}
