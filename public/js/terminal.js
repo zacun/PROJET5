@@ -10,12 +10,9 @@ var terminal = {
 
     openAndClose: function (e) {
         if (terminal.terminalElt.classList.contains('off')) {
-            terminal.terminalElt.style.top = '3rem';
-            terminal.terminalElt.style.left = '3rem';
-            terminal.terminalElt.className = 'on';
+            terminal.terminalElt.className = 'terminal-on';
         } else {
             terminal.terminalElt.className = 'off';
-            terminal.terminalElt.removeAttribute('style');
         }
     }
 

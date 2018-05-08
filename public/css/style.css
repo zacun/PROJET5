@@ -51,6 +51,10 @@ h2 {
     display: block;
 }
 
+.terminal-on {
+    display: flex;
+}
+
 .alert {
     padding: 1rem;
     box-shadow: 1px 1px 3px 1px black;
@@ -436,89 +440,83 @@ h2 {
 /*****************/
 
 #terminal {
+    flex-direction: column;
+    justify-content: center;
+    width: 35rem;
+    height: 55vh;
+    border-radius: 0.875rem;
     position: fixed;
-    width: 550px;
-    height: 700px;
-    border: 1.5rem solid rgba(101, 103, 107, 0.6);
-    border-top: 2.5rem solid rgba(101, 103, 107, 0.6);
-    border-radius: 15px;
-    color: white;
-    background-color: rgba(43, 45, 47, 0.8);
+    top: 5rem;
+    left: 5rem;
+    background-color: grey;
+    align-items: stretch;
     font-family: 'Play', sans-serif;
+    color: white;
+    overflow: auto;
+    resize: both;
 }
 
-#terminal::before {
-    content: "Terminal de navigation";
-    position: absolute;
+.terminal-name {
+    display: flex;
     color: white;
+    font-size: 1.25rem;
     font-weight: bold;
-    top: -1.75rem;
-    left: 0;
+    justify-content: space-between;
+    padding: 0.5rem 1rem;
+}
+
+#terminal-content {
+    flex: 1;
+    background-color: rgba(43, 45, 47, 0.8);
+    margin: 0 1rem 1rem 1rem;
+    display: flex;
+    flex-direction: column;
+}
+
+#terminal-content form {
+    display: flex;
+    height: 2.5rem;
+    background-color: grey;
+}
+
+#terminal-content input {
+    flex: 1;
+    font-size: 1.25rem;
+    color: white;
+    font-family: 'Play', sans-serif;
+    background-color: rgba(43, 45, 47, 1);
+    border: none;
+    margin: 0.25rem;
+}
+
+#terminal-content input:focus {
+    outline: none;
+}
+
+#terminal-content button {
+    font-family: 'Play', sans-serif;
+    border-color: grey;
+    width: 15%;
+    background-color: rgba(101, 103, 107, 0.8);
+    color: white;
+    margin: 0.25rem;
+}
+
+#terminal-content button:focus {
+    outline: none;
+}
+
+.terminal-text {
+    padding: 0 0.5rem;
+    flex: 1;
+}
+
+.terminal-text p {
+    margin: 0.25rem 0;
 }
 
 .terminal-close {
-    position: absolute;
-    color: white;
-    top: -2rem;
-    right: 0;
-    font-weight: bold;
-    font-size: 1.25rem;
     cursor: pointer;
-}
-
-#terminal:hover::after {
-    cursor: pointer;
-}
-
-.terminal-form {
-    display: flex;
-    flex-direction: column;
-    height: calc(700px - 4rem);
-    /* terminal height minus border */
-}
-
-.terminal-screen {
-    flex: 1;
-    margin: 1rem;
-}
-
-.terminal-screen p {
-    margin: 5px;
-}
-
-.terminal-inputs {
-    height: 2rem;
-    display: flex;
-    flex-direction: row;
-    border-top: 0.75rem solid rgba(101, 103, 107, 0.6);
-    justify-content: space-between;
-    background-color: rgba(101, 103, 107, 0.6);
-}
-
-.terminal-input {
-    flex: 1;
-    background-color: rgba(43, 45, 47, 0.5);
-    color: white;
-    font-family: 'Play', sans-serif;
-    height: inherit;
-    border: none;
-    padding: 0 5px 0 5px;
-    margin: 0 5px 0 0;
-    font-size: 1.25rem;
-    outline: none;
-}
-
-.terminal-submit {
-    height: inherit;
-    width: 15%;
-    border-color: grey;
-    margin: 0 0 0 5px;
-    background-color: rgba(101, 103, 107, 0.6);
-    color: white;
-}
-
-.terminal-submit:focus {
-    outline: none;
 }
 
 .terminal-button {

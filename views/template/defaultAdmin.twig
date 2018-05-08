@@ -41,18 +41,21 @@
 </div>
 <!-- Terminal window -->
 <div id="terminal" class="off">
-    <span class="terminal-close">✖</span>
-    <form class="terminal-form">
-        <div class="terminal-screen">
+    <div class="terminal-name">
+        <span>Terminal de navigation</span>
+        <span class="terminal-close">✖</span>
+    </div>
+    <div id="terminal-content">
+        <div class="terminal-text">
             <p>Ceci est un terminal de navigation.</p>
             <p>Il permet une navigation avancée sur le site.</p>
             <p>Pour voir les commandes à votre disposition, tapez : -help</p>
         </div>
-        <div class="terminal-inputs">
-            <input type="text" class="terminal-input" id="terminal-input" name="terminal-input" placeholder="Entrez une commande...">
-            <button class="terminal-submit">Valider</button>
-        </div>
-    </form>
+        <form>
+            <input type="text" title="terminal-input" id="terminal-input" name="terminal-input" placeholder="Entrez une commande..." required>
+            <button type="submit">Valider</button>
+        </form>
+    </div>
 </div>
 <div class="terminal-button" data-tooltip="Ouvrir/Fermer le terminal">
     <i class="fas fa-window-maximize fa-5x"></i>
