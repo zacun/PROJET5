@@ -56,7 +56,7 @@ class Manager {
     public function exist($table, $id) {
         $SqlStatement = 'SELECT id FROM ' . $table . ' WHERE id = ?';
         $req = $this->dbConnect()->prepare($SqlStatement);
-        $req->execute(array($id));
+        $req->execute([$id]);
         $data = $req->fetch();
         return $data;
     }

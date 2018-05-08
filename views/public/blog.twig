@@ -10,7 +10,7 @@
                 <article class="blog-post">
                     <h1 class="blog-post-title">{{ post.title }}</h1>
                     <div class="blog-post-info">
-                        <span>Publié le {{ post.date_fr }}</span>
+                        <span><small>Publié le {{ post.date_fr }}</small></span>
                         <a href="{{ 'article'|getUrl ~ '?id=' ~ post.id }}">-> Lire l'article</a>
                     </div>
                 </article>

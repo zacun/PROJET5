@@ -21,7 +21,7 @@
                 <article>
                     <h1>{{ lastPost.title }}</h1>
                     <div>
-                        {{ lastPost.content|truncate(150, true) }}
+                        {{ lastPost.content|truncate(150, true)|raw }}
                         <a href="{{ 'article'|getUrl ~ '?id=' ~ lastPost.id }}">-> Lire la suite</a>
                     </div>
                     <small>Publié le {{ lastPost.date_fr }}</small>

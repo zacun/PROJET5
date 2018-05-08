@@ -1,0 +1,27 @@
+{% extends 'defaultAdmin.twig' %}
+{% block title 'Nouvel article' %}
+{% block mainAdmin %}
+    <section>
+        <h2>Nouvel article</h2>
+        <form action="{{ 'newPost'|getUrl }}" method="post">
+            <p>
+                <label for="new-post-title">Titre de l'article</label><br>
+                <input type="text" id="new-post-title" name="new-post-title" value="{{ title }}" required>
+            </p>
+            <p>
+                <label for="new-post-content">Contenu de l'article</label><br>
+                <textarea id="new-post-content" name="new-post-content">{{ content }}</textarea>
+            </p>
+            <button>Ajouter l'article</button>
+        </form>
+    </section>
+{% endblock %}
+{% block scripts %}
+    <script src="https://cloud.tinymce.com/stable/tinymce.min.js"></script>
+    <script>
+        tinymce.init({
+            selector:'textarea',
+            resize: 'both'
+        });
+    </script>
+{% endblock %}

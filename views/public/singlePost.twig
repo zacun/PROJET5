@@ -3,8 +3,8 @@
 {% block main %}
     <section class="singlepost-post">
         <h1 class="singlepost-title">{{ singlePost.title }}</h1>
-        <p class="singlepost-date">Publié le {{ singlePost.date_fr }}</p>
-        <div class="singlepost-content">{{ singlePost.content }}</div>
+        <p class="singlepost-date"><small>Publié le {{ singlePost.date_fr }}</small></p>
+        <div class="singlepost-content">{{ singlePost.content|raw }}</div>
     </section>
     <section class="singlepost-comments">
         <h2>Commentaires</h2>

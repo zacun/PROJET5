@@ -33,10 +33,28 @@ class PostsManager extends Manager {
         $req = $this->prepare(
             'SELECT id, title, content, DATE_FORMAT(post_date, \'%d %M %Y à %Hh%i\') AS date_fr 
                         FROM posts
-                        WHERE id = ?',
-                        array($postId), true, true
+                        WHERE id = ?', [$postId], true, true
         );
         return $req;
+    }
+
+    public function newPost($title, $content) {
+        $req = $this->prepare(
+            'INSERT INTO posts(title, content, post_date)
+                        VALUES (?, ?, NOW())', [$title, $content]
+        );
+    }
+
+    public function editPost($postId, $title, $content) {
+        $req = $this->prepare(
+            'UPDATE posts 
+                        SET title = ?, content = ? 
+                        WHERE id = ?', [$title, $content, $postId]
+        );
+    }
+
+    public function deletePost($postId) {
+        $req = $this->prepare('DELETE FROM posts WHERE id = ?', [$postId]);
     }
 
 }

@@ -1,0 +1,27 @@
+{% extends 'defaultAdmin.twig' %}
+{% block title 'Editer' ~ editPost.title %}
+{% block mainAdmin %}
+    <section>
+        <h2>Editer l'article : {{ editPost.title }}</h2>
+        <form action="{{ 'editPost'|getUrl ~ '?id=' ~ editPost.id }}" method="post">
+            <p>
+                <label for="edit-post-title">Titre de l'article</label><br>
+                <input type="text" id="edit-post-title" name="edit-post-title" value="{{ editPost.title }}" required>
+            </p>
+            <p>
+                <label for="edit-post-content">Contenu de l'article</label><br>
+                <textarea id="edit-post-content" name="edit-post-content">{{ editPost.content }}</textarea>
+            </p>
+            <button>Editer l'article</button>
+        </form>
+    </section>
+{% endblock %}
+{% block scripts %}
+    <script src="https://cloud.tinymce.com/stable/tinymce.min.js"></script>
+    <script>
+        tinymce.init({
+            selector:'textarea',
+            resize: 'both'
+        });
+    </script>
+{% endblock %}

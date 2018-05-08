@@ -1,5 +1,5 @@
 {
-  "accueil": {
+  "home": {
     "path": "/",
     "run": "PublicController@homePage"
   },
@@ -30,5 +30,33 @@
   "admin": {
     "path": "/admin",
     "run": "AdminController@adminPage"
+  },
+  "comments": {
+    "path": "/admin/comments",
+    "run": "AdminController@commentsPage"
+  },
+  "newPost": {
+    "path": "/admin/new-post",
+    "run": "AdminController@newPostPage"
+  },
+  "editPost": {
+    "path": "/admin/edit-post",
+    "run": "AdminController@editPostPage"
+  },
+  "deletePost": {
+    "path": "/admin/delete-post",
+    "run": "AdminController@deletePost"
+  },
+  "newProject": {
+    "path": "/admin/new-project",
+    "run": "AdminController@newProjectPage"
+  },
+  "editProject": {
+    "path": "/admin/edit-project",
+    "run": "AdminController@editProjectPage"
+  },
+  "deleteProject": {
+    "path": "/admin/delete-project",
+    "run": "AdminController@deleteProject"
   }
 }
