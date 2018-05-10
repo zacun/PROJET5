@@ -48,7 +48,7 @@ class Router {
         }
         if (!isset($controllerAndMethod)) {
             Alert::setAlert('L\'adresse demandée n\'existe pas.', 'error');
-            header('Location: ' . Router::getUrl('accueil'));
+            header('Location: ' . Router::getUrl('home'));
             exit();
         }
         $controller = $controllerAndMethod[0];
@@ -70,11 +70,23 @@ class Router {
 
     public static function getActiveMenu($url) {
         $actualUrl = self::getPath();
-        $actualUrl = str_replace('/post', '', $actualUrl);
-        if ($url === $actualUrl) {
-            return 'class=menu-active';
+        $actualUrl = explode('/', $actualUrl);
+        $firstUrl = '/' . $actualUrl[1];
+        if (isset($actualUrl[2])) {
+            $secondUrl = '/' . $actualUrl[2];
+            $fullUrl = $firstUrl . $secondUrl;
+            if ($url === $firstUrl || $url === $fullUrl) {
+                return 'class=menu-active';
+            } else {
+                return '';
+            }
         } else {
-            return '';
+            if ($url === $firstUrl) {
+                return 'class=menu-active';
+            } else {
+                return '';
+            }
         }
     }
+
 }
