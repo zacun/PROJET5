@@ -14,10 +14,7 @@ class Manager {
 
     /**
      * @param $SqlStatement
-     * @param $class_name
-     * @param bool $fetchOnlyOne
-     * @return array|mixed
-     * Simple query request.
+     * @return \PDOStatement
      */
     public function query($SqlStatement) {
         $req = $this->dbConnect()->query($SqlStatement);

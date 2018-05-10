@@ -1,0 +1,56 @@
+{% extends 'defaultAdmin.twig' %}
+{% block title 'Commentaires' %}
+{% block mainAdmin %}
+    <section class="new-comments-list">
+        <h2>Liste des nouveaux commentaires</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Date d'ajout</th>
+                    <th>Auteur</th>
+                    <th>Contenu</th>
+                    <th>Chapitre lié</th>
+                    <th>Accepter</th>
+                    <th>Supprimer</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for comment in newComments %}
+                    <tr>
+                        <td>{{ comment.date_fr }}</td>
+                        <td>{{ comment.author }}</td>
+                        <td>{{ comment.content }}</td>
+                        <td><a href="{{ 'article'|getUrl ~ '?id=' ~ comment.linked_post }}">{{ comment.linked_post_title }}</a></td>
+                        <td><a href="{{ 'acceptComment'|getUrl ~ '?id=' ~ comment.id }}"><i class="fas fa-check"></i></a></td>
+                        <td><a href="{{ 'deleteComment'|getUrl ~ '?id=' ~ comment.id }}"><i class="fas fa-trash"></i></a></td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </section>
+    <section class="all-comments-list">
+        <h2>Tous les commentaires</h2>
+        <table>
+            <thead>
+            <tr>
+                <th>Date d'ajout</th>
+                <th>Auteur</th>
+                <th>Contenu</th>
+                <th>Chapitre lié</th>
+                <th>Supprimer</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for comment in allComments %}
+                <tr>
+                    <td>{{ comment.date_fr }}</td>
+                    <td>{{ comment.author }}</td>
+                    <td>{{ comment.content }}</td>
+                    <td><a href="{{ 'article'|getUrl ~ '?id=' ~ comment.linked_post }}">{{ comment.linked_post_title }}</a></td>
+                    <td><a href="{{ 'deleteComment'|getUrl ~ '?id=' ~ comment.id }}"><i class="fas fa-trash"></i></a></td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </section>
+{% endblock %}

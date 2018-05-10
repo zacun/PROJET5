@@ -35,6 +35,14 @@
     "path": "/admin/comments",
     "run": "AdminController@commentsPage"
   },
+  "acceptComment": {
+    "path": "/admin/accept-comment",
+    "run": "AdminController@acceptComment"
+  },
+  "deleteComment": {
+    "path": "/admin/delete-comment",
+    "run": "AdminController@deleteComment"
+  },
   "newPost": {
     "path": "/admin/new-post",
     "run": "AdminController@newPostPage"

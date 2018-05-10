@@ -1,6 +1,7 @@
 {% extends 'defaultAdmin.twig' %}
 {% block title 'Admin' %}
 {% block mainAdmin %}
+    {{ getAlert('notif') }}
     <div class="list-container">
         <section class="articles-list">
             <h2>Liste des articles</h2>
