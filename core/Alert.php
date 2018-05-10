@@ -9,14 +9,19 @@ namespace niluap\core;
  */
 class Alert {
 
-    public static function setAlert(string $message, string $type) {
-        $_SESSION['alert'] = ['message' => $message, 'type' => $type];
+    /**
+     * @param string $message is the message that will be displayed.
+     * @param string $type is the type as in declared in your CSS (error, success, info...)
+     * @param string $kind name the session (alert, info, notif, ...)
+     */
+    public static function setAlert(string $message, string $type, string $kind) {
+        $_SESSION[$kind] = ['message' => $message, 'type' => $type];
     }
 
-    public static function getAlert() {
-        if (isset($_SESSION['alert'])) {
-            echo '<div class="alert ' . $_SESSION['alert']['type'] . '">' . $_SESSION['alert']['message'] . '</div>';
-            unset($_SESSION['alert']);
+    public static function getAlert($kind) {
+        if (isset($_SESSION[$kind])) {
+            echo '<div class="' . $kind . ' ' . $_SESSION[$kind]['type'] . '">' . $_SESSION[$kind]['message'] . '</div>';
+            unset($_SESSION[$kind]);
         }
     }
 

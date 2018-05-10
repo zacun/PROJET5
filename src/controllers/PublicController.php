@@ -34,9 +34,9 @@ class PublicController extends Controller {
             $subject = trim($_POST['contact-subject']);
             $message = trim($_POST['contact-message']);
             if (empty($name) || empty($mail) || empty($subject) || empty($message)) {
-                Alert::setAlert('Tous les champs ne sont pas remplis.', 'error');
+                Alert::setAlert('Tous les champs ne sont pas remplis.', 'error', 'alert');
             } elseif (!filter_var($mail, FILTER_VALIDATE_EMAIL)) {
-                Alert::setAlert('L\'adresse e-mail renseignée n\'est pas valide.', 'error');
+                Alert::setAlert('L\'adresse e-mail renseignée n\'est pas valide.', 'error', 'alert');
             } else {
                 $subject = strip_tags($subject);
                 $headers = 'FROM : ' . strip_tags($name) . ' <' . strip_tags($mail) . '>';
@@ -60,12 +60,12 @@ class PublicController extends Controller {
         $commentsManager = new CommentsManager();
         $postExist = $postsManager->exist('posts', $_GET['id']);
         if (empty($postExist)) {
-            Alert::setAlert('Cet article n\'existe pas.', 'error');
+            Alert::setAlert('Cet article n\'existe pas.', 'error', 'alert');
             header('Location: ' . Router::getUrl('blog'));
             exit();
         }
-        $singlePost = $postsManager->getOnePost(htmlspecialchars($_GET['id']));
-        $commentsByPost = $commentsManager->getCommentsByPost(htmlspecialchars($_GET['id']));
+        $singlePost = $postsManager->getOnePost($_GET['id']);
+        $commentsByPost = $commentsManager->getCommentsByPost($_GET['id']);
         $this->render('singlePost.twig', compact('singlePost', 'commentsByPost'));
     }
 
@@ -83,12 +83,12 @@ class PublicController extends Controller {
         $commentsManager = new CommentsManager();
         $postExist = $commentsManager->exist('posts', $_GET['postId']);
         if (empty($postExist)) {
-            Alert::setAlert('L\'article n\'existe pas.', 'error');
+            Alert::setAlert('L\'article n\'existe pas.', 'error', 'alert');
             header('Location: ' . Router::getUrl('blog'));
             exit();
         }
         if (empty(trim($_POST['comment-author'])) || empty(trim($_POST['comment-content']))) {
-            Alert::setAlert('Tous les champs ne sont pas remplis.', 'error');
+            Alert::setAlert('Tous les champs ne sont pas remplis.', 'error', 'alert');
             header('Location: ' . Router::getUrl('article') . '?id=' . $_GET['postId']);
             exit();
         }
@@ -97,7 +97,7 @@ class PublicController extends Controller {
             ucfirst($_POST['comment-author']),
             $_POST['comment-content']
         );
-        Alert::setAlert('Le commentaire a bien été posté et est en attente de modération.', 'success');
+        Alert::setAlert('Le commentaire a bien été posté et est en attente de modération.', 'success', 'alert');
         header('Location: ' . Router::getUrl('article') . '?id=' . $_GET['postId']);
     }
 

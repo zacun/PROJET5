@@ -27,8 +27,8 @@ class MyTwigExtension extends Twig_Extension implements Twig_Extension_GlobalsIn
         ];
     }
 
-    public function twigGetAlert() {
-        Alert::getAlert();
+    public function twigGetAlert($kind) {
+        Alert::getAlert($kind);
     }
 
     public function twigGetUrl($route) {
