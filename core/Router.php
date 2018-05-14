@@ -47,7 +47,7 @@ class Router {
             }
         }
         if (!isset($controllerAndMethod)) {
-            Alert::setAlert('L\'adresse demandée n\'existe pas.', 'error');
+            Alert::setAlert('L\'adresse demandée n\'existe pas.', 'error', 'alert');
             header('Location: ' . Router::getUrl('home'));
             exit();
         }
@@ -77,15 +77,13 @@ class Router {
             $fullUrl = $firstUrl . $secondUrl;
             if ($url === $firstUrl || $url === $fullUrl) {
                 return 'class=menu-active';
-            } else {
-                return '';
             }
+            return '';
         } else {
             if ($url === $firstUrl) {
                 return 'class=menu-active';
-            } else {
-                return '';
             }
+            return '';
         }
     }
 

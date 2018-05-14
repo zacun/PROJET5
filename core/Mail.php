@@ -23,7 +23,7 @@ class Mail {
      */
     public function newMail(string $subject, string $message, string $headers) {
         mail($this->ownerMail, $subject, $message, $headers);
-        Alert::setAlert('Votre message a bien été envoyé !', 'success');
+        Alert::setAlert('Votre message a bien été envoyé !', 'success', 'alert');
         header('Location: ' . Router::getUrl('contactForm'));
     }
 

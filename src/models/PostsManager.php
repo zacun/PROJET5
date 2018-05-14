@@ -43,6 +43,7 @@ class PostsManager extends Manager {
             'INSERT INTO posts(title, content, post_date)
                         VALUES (?, ?, NOW())', [$title, $content]
         );
+        return $req;
     }
 
     public function editPost($postId, $title, $content) {
@@ -51,10 +52,12 @@ class PostsManager extends Manager {
                         SET title = ?, content = ? 
                         WHERE id = ?', [$title, $content, $postId]
         );
+        return $req;
     }
 
     public function deletePost($postId) {
         $req = $this->prepare('DELETE FROM posts WHERE id = ?', [$postId]);
+        return $req;
     }
 
 }

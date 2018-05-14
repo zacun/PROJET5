@@ -447,8 +447,8 @@ h2 {
     height: 55vh;
     border-radius: 0.875rem;
     position: fixed;
-    bottom: 8rem;
-    right: 8rem;
+    top: 8rem;
+    left: 8rem;
     background-color: grey;
     align-items: stretch;
     font-family: 'Play', sans-serif;
@@ -575,7 +575,6 @@ table {
 }
 
 table thead tr th {
-    border-bottom: 1px solid black;
     padding: 0.5rem;
 }
 
