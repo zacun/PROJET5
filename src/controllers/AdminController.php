@@ -17,7 +17,7 @@ class AdminController extends Controller {
 
     public function adminPage () {
         $commentsManager = new CommentsManager();
-        $newComments = $commentsManager->getNewComments()->rowCount();
+        $newComments = $commentsManager->countNewComments();
         if ($newComments > 0) {
             Alert::setAlert('Il y a de nouveaux commentaires à modérer.', 'info', 'notif');
         }
@@ -40,8 +40,7 @@ class AdminController extends Controller {
         $commentExist = $commentsManager->exist('comments', $_GET['id']);
         if (empty($commentExist)) {
             Alert::setAlert('Ce commentaire n\'existe pas.', 'error', 'alert');
-            header('Location: ' . Router::getUrl('comments'));
-            exit();
+            $this->redirect(Router::getUrl('comments'));
         }
         $commentsManager->acceptComment($_GET['id']);
         Alert::setAlert('Le commentaire a bien été accepté.', 'success', 'alert');
@@ -53,8 +52,7 @@ class AdminController extends Controller {
         $commentExist = $commentsManager->exist('comments', $_GET['id']);
         if (empty($commentExist)) {
             Alert::setAlert('Ce commentaire n\'existe pas.', 'error', 'alert');
-            header('Location: ' . Router::getUrl('comments'));
-            exit();
+            $this->redirect(Router::getUrl('comments'));
         }
         $commentsManager->deleteComment($_GET['id']);
         Alert::setAlert('Le commentaire a bien été supprimé.', 'success', 'alert');
@@ -73,8 +71,7 @@ class AdminController extends Controller {
                 $postsManager = new PostsManager();
                 $postsManager->newPost($title, $content);
                 Alert::setAlert('L\'article a bien été ajouté.', 'success', 'alert');
-                header('Location: ' . Router::getUrl('admin'));
-                exit();
+                $this->redirect(Router::getUrl('admin'));
             }
         }
         $this->render('newPost.twig', compact('title', 'content'));
@@ -89,8 +86,7 @@ class AdminController extends Controller {
         $postExist = $postsManager->exist('posts', $_GET['id']);
         if (empty($postExist)) {
             Alert::setAlert('Le chapitre n\'existe pas.', 'error', 'alert');
-            header('Location: ' . Router::getUrl('admin'));
-            exit();
+            $this->redirect(Router::getUrl('admin'));
         }
         if (!empty($_POST)) {
             if (empty(trim($_POST['edit-post-title'])) || empty(trim($_POST['edit-post-content']))) {
@@ -102,8 +98,7 @@ class AdminController extends Controller {
                     $_POST['edit-post-content']
                 );
                 Alert::setAlert('Le chapitre a bien été mis à jour.', 'success', 'alert');
-                header('Location: ' . Router::getUrl('article') . '?id=' . $_GET['id']);
-                exit();
+                $this->redirect(Router::getUrl('article') . '?id=' . $_GET['id']);
             }
         }
         $editPost = $postsManager->getOnePost($_GET['id']);
@@ -119,8 +114,7 @@ class AdminController extends Controller {
         $postExist = $postManager->exist('posts', $_GET['id']);
         if (empty($postExist)) {
             Alert::setAlert('Cet article n\'existe pas.', 'error', 'alert');
-            header('Location: ' . Router::getUrl('admin'));
-            exit();
+            $this->redirect(Router::getUrl('admin'));
         }
         $postManager->deletePost($_GET['id']);
         Alert::setAlert('L\'article a bien été supprimé.', 'success', 'alert');
@@ -132,8 +126,7 @@ class AdminController extends Controller {
         $projectExist = $projectsManager->exist('projects', $_GET['id']);
         if (empty($projectExist)) {
             Alert::setAlert('Ce projet n\'existe pas.', 'error', 'alert');
-            header('Location: ' . Router::getUrl('admin'));
-            exit();
+            $this->redirect(Router::getUrl('admin'));
         }
         $projectsManager->deleteProject($_GET['id']);
         Alert::setAlert('Le projet a bien été supprimé.', 'success', 'alert');

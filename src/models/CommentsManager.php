@@ -61,18 +61,26 @@ class CommentsManager extends Manager {
         return $req;
     }
 
+    public function countNewComments () {
+        $req = $this->query('SELECT allowed FROM comments WHERE allowed = 0');
+        $count = $req->rowCount();
+        return $count;
+    }
+
     public function acceptComment($commentId) {
         $req = $this->prepare(
             'UPDATE comments
                         SET allowed = 1
                         WHERE id = ?', [$commentId]
         );
+        return $req;
     }
 
     public function deleteComment($commentId) {
         $req = $this->prepare(
             'DELETE FROM comments WHERE id = ?', [$commentId]
         );
+        return $req;
     }
 
 }

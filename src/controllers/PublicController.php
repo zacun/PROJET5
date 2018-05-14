@@ -61,8 +61,7 @@ class PublicController extends Controller {
         $postExist = $postsManager->exist('posts', $_GET['id']);
         if (empty($postExist)) {
             Alert::setAlert('Cet article n\'existe pas.', 'error', 'alert');
-            header('Location: ' . Router::getUrl('blog'));
-            exit();
+            $this->redirect(Router::getUrl('blog'));
         }
         $singlePost = $postsManager->getOnePost($_GET['id']);
         $commentsByPost = $commentsManager->getCommentsByPost($_GET['id']);
@@ -84,13 +83,11 @@ class PublicController extends Controller {
         $postExist = $commentsManager->exist('posts', $_GET['postId']);
         if (empty($postExist)) {
             Alert::setAlert('L\'article n\'existe pas.', 'error', 'alert');
-            header('Location: ' . Router::getUrl('blog'));
-            exit();
+            $this->redirect(Router::getUrl('blog'));
         }
         if (empty(trim($_POST['comment-author'])) || empty(trim($_POST['comment-content']))) {
             Alert::setAlert('Tous les champs ne sont pas remplis.', 'error', 'alert');
-            header('Location: ' . Router::getUrl('article') . '?id=' . $_GET['postId']);
-            exit();
+            $this->redirect(Router::getUrl('article') . '?id=' . $_GET['postId']);
         }
         $commentsManager->postComment(
             $_GET['postId'],

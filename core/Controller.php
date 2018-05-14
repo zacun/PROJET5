@@ -32,4 +32,9 @@ class Controller {
         echo $this->twig->render($view, $variables);
     }
 
+    protected function redirect (string $location) {
+        header('Location: ' . $location);
+        exit();
+    }
+
 }
