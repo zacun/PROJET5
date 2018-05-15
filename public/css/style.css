@@ -610,7 +610,7 @@ table tr a {
 /******* New Post *****/
 /**********************/
 
-.site-main-admin .form-post {
+.form-post {
     text-align: center;
     display: flex;
     flex-direction: column;
@@ -622,7 +622,13 @@ table tr a {
 /******* New Project *****/
 /*************************/
 
-
+.form-project {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
 
 /*****************/
 /***** Media *****/

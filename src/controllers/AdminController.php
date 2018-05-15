@@ -78,14 +78,36 @@ class AdminController extends Controller {
     }
 
     public function newProjectPage () {
-        $this->render('newProject.twig');
+        $name = '';
+        $description = '';
+        $path = '';
+        if (!empty($_POST)) {
+            $name = trim($_POST['new-project-name']);
+            $description = trim($_POST['new-project-description']);
+            $path = trim($_POST['new-project-path']);
+            if (empty($name) || empty($description) || empty($path)) {
+                Alert::setAlert('Tous les champs ne sont pas remplis', 'error', 'alert');
+            } else {
+                if (is_uploaded_file($_FILES['new-project-image']['tmp_name']) && $_FILES['new-project-image']['type'] === 'image/png' || $_FILES['new-project-image']['type'] === 'image/jpeg') {
+                    move_uploaded_file($_FILES['new-project-image']['tmp_name'], '../public/images/projects/' . $_FILES['new-project-image']['name']);
+                    $imagePath = '/public/images/projects/' . $_FILES['new-project-image']['name'];
+                    $projectsManager = new ProjectsManager();
+                    $projectsManager->newProject($name, $description, $path, $imagePath);
+                    Alert::setAlert('Le projet a bien été ajouté', 'success', 'alert');
+                    $this->redirect(Router::getUrl('admin'));
+                } else {
+                    Alert::setAlert('Le type de l\'image n\'est pas valable. Veuillez utiliser .png ou .jpg/.jpeg', 'error', 'alert');
+                }
+            }
+        }
+        $this->render('newProject.twig', compact('name', 'description', 'path'));
     }
 
     public function editPostPage () {
         $postsManager = new PostsManager();
         $postExist = $postsManager->exist('posts', $_GET['id']);
         if (empty($postExist)) {
-            Alert::setAlert('Le chapitre n\'existe pas.', 'error', 'alert');
+            Alert::setAlert('Cet article n\'existe pas.', 'error', 'alert');
             $this->redirect(Router::getUrl('admin'));
         }
         if (!empty($_POST)) {
@@ -97,7 +119,7 @@ class AdminController extends Controller {
                     $_POST['edit-post-title'],
                     $_POST['edit-post-content']
                 );
-                Alert::setAlert('Le chapitre a bien été mis à jour.', 'success', 'alert');
+                Alert::setAlert('L\'article a bien été mis à jour.', 'success', 'alert');
                 $this->redirect(Router::getUrl('article') . '?id=' . $_GET['id']);
             }
         }
@@ -106,7 +128,37 @@ class AdminController extends Controller {
     }
 
     public function editProjectPage () {
-
+        $projectsManager = new ProjectsManager();
+        $projectExist = $projectsManager->exist('projects', $_GET['id']);
+        if (empty($projectExist)) {
+            Alert::setAlert('Ce projet n\'existe pas.', 'error', 'alert');
+            $this->redirect(Router::getUrl('admin'));
+        }
+        $editProject = $projectsManager->getOneProject($_GET['id']);
+        if (!empty($_POST)) {
+            $name = trim($_POST['edit-project-name']);
+            $description = trim($_POST['edit-project-description']);
+            $path = trim($_POST['edit-project-path']);
+            $imagePath = $editProject['image_path'];
+            if (empty($name) || empty($description) || empty($path)) {
+                Alert::setAlert('Tous les champs ne sont pas remplis', 'error', 'alert');
+            } else {
+                if (is_uploaded_file($_FILES['edit-project-image']['tmp_name'])) {
+                    if ($_FILES['edit-project-image']['type'] === 'image/png' || $_FILES['edit-project-image']['type'] === 'image/jpeg') {
+                        unlink('..' . $editProject['image_path']);
+                        move_uploaded_file($_FILES['edit-project-image']['tmp_name'], '../public/images/projects/' . $_FILES['edit-project-image']['name']);
+                        $imagePath = '/public/images/projects/' . $_FILES['edit-project-image']['name'];
+                    } else {
+                        Alert::setAlert('Le type de l\'image n\'est pas valable. Veuillez utiliser .png ou .jpg/.jpeg', 'error', 'alert');
+                        $this->redirect(Router::getUrl('editProject') . '?id=' . $_GET['id']);
+                    }
+                }
+                $projectsManager->editProject($_GET['id'], $name, $description, $path, $imagePath);
+                Alert::setAlert('Le projet a bien été édité', 'success', 'alert');
+                $this->redirect(Router::getUrl('admin'));
+            }
+        }
+        $this->render('editProject.twig', compact('editProject'));
     }
 
     public function deletePost () {
@@ -128,6 +180,8 @@ class AdminController extends Controller {
             Alert::setAlert('Ce projet n\'existe pas.', 'error', 'alert');
             $this->redirect(Router::getUrl('admin'));
         }
+        $project = $projectsManager->getOneProject($_GET['id']);
+        unlink('..' . $project['image_path']);
         $projectsManager->deleteProject($_GET['id']);
         Alert::setAlert('Le projet a bien été supprimé.', 'success', 'alert');
         header('Location: ' . Router::getUrl('admin'));

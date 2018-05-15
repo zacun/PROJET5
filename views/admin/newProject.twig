@@ -1,0 +1,14 @@
+{% extends 'defaultAdmin.twig' %}
+{% block title 'Nouveau Projet' %}
+{% block mainAdmin %}
+    <section class="form-project">
+        <h2>Nouveau projet</h2>
+        <form action="" method="post" enctype="multipart/form-data">
+            <p><label for="new-project-name">Nom du projet</label><br><input type="text" id="new-project-name" name="new-project-name" required></p>
+            <p><label for="new-project-description">Description du projet</label><br><input type="text" id="new-project-description" name="new-project-description" required></p>
+            <p><label for="new-project-path">Chemin du projet</label><br><input type="text" id="new-project-path" name="new-project-path" required></p>
+            <p><label for="new-project-image">Choisir une image (350x200)</label><br><input type="file" id="new-project-image" name="new-project-image" accept=".png, .jpg, .jpeg" required></p>
+            <button type="submit">Ajouter le projet !</button>
+        </form>
+    </section>
+{%  endblock %}
