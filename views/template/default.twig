@@ -67,8 +67,8 @@
             <p>Il permet une navigation avancée sur le site.</p>
             <p>Pour voir les commandes à votre disposition, tapez : -help</p>
         </div>
-        <form>
-            <input type="text" title="terminal-input" id="terminal-input" name="terminal-input" placeholder="Entrez une commande..." required>
+        <form class="terminal-form">
+            <input type="text" title="command" id="command" name="command" placeholder="Entrez une commande..." autocomplete="off" required>
             <button type="submit">Valider</button>
         </form>
     </div>
@@ -79,6 +79,18 @@
 <!-- End of terminal window -->
 
 <script src="/public/js/terminal.js"></script>
+<script>
+    var routes = {
+        'home': '{{ 'home'|getUrl }}',
+        'blog': '{{ 'blog'|getUrl }}',
+        'portfolio': '{{ 'portfolio'|getUrl }}',
+        'cv': '{{ 'cv'|getUrl }}',
+        'admin': '{{ 'admin'|getUrl }}'
+    };
+</script>
+<script src="/public/js/commandsFunctions.js"></script>
+<script src="/public/js/commandsList.js"></script>
+<script src="/public/js/commands.js"></script>
 {% block scripts %}
 {% endblock %}
 </body>

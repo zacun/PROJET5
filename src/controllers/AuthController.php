@@ -1,7 +1,10 @@
 <?php
 namespace niluap\src\controllers;
 
+use niluap\core\Alert;
 use niluap\core\Controller;
+use niluap\core\Router;
+use niluap\src\models\UsersManager;
 
 /**
  * Class AuthController
@@ -10,5 +13,22 @@ use niluap\core\Controller;
  * Can be used and extended for a space members.
  */
 class AuthController extends Controller {
+
+    public function login() {
+        $usersManager = new UsersManager();
+        $user = $usersManager->getUser($_POST['pseudo'], $_POST['password']);
+        if (!$user) {
+            echo '<p class="error">Identifiants incorrects</p>';
+        }
+        if ($user['role'] === 'admin') {
+            $_SESSION['admin'] = ['pseudo' => $user['pseudo']];
+            echo '<p class="success">Connexion réussie.</p>';
+        }
+    }
+
+    public function logout() {
+        unset($_SESSION['admin']);
+        echo '<p class="success">Déconnexion réussie.</p>';
+    }
 
 }

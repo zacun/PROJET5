@@ -2,6 +2,7 @@
 namespace niluap\src\controllers;
 
 use niluap\core\Alert;
+use niluap\core\Auth;
 use niluap\core\Controller;
 use niluap\core\Router;
 use niluap\src\models\CommentsManager;
@@ -14,6 +15,14 @@ use niluap\src\models\ProjectsManager;
  * This class contains all function related to the admins such as displaying admin pages or allowing admin actions (delete comments/posts, add post/project, ...)
  */
 class AdminController extends Controller {
+
+    public function __construct() {
+        parent::__construct();
+        if (!Auth::isAdmin()) {
+            Alert::setAlert('Accès interdit. Veuillez vous connecter.', 'error', 'alert');
+            $this->redirect(Router::getUrl('home'));
+        }
+    }
 
     public function adminPage () {
         $commentsManager = new CommentsManager();

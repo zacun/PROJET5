@@ -66,5 +66,13 @@
   "deleteProject": {
     "path": "/admin/delete-project",
     "run": "AdminController@deleteProject"
+  },
+  "login": {
+    "path": "/login",
+    "run": "AuthController@login"
+  },
+  "logout": {
+    "path": "/logout",
+    "run": "AuthController@logout"
   }
 }
