@@ -41,6 +41,7 @@ body {
 
 h2 {
     font-size: 2rem;
+    text-align: center;
 }
 
 .off {
@@ -453,8 +454,7 @@ h2 {
     align-items: stretch;
     font-family: 'Play', sans-serif;
     color: white;
-    overflow: auto;
-    resize: both;
+    overflow: hidden;
 }
 
 .terminal-name {
@@ -464,6 +464,7 @@ h2 {
     font-weight: bold;
     justify-content: space-between;
     padding: 0.5rem 1rem;
+    cursor: move;
 }
 
 #terminal-content {
@@ -551,6 +552,19 @@ h2 {
     cursor: pointer;
 }
 
+.terminal-resize {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    transform: translate3D(25%, 25%, 0);
+    background-color: lightgrey;
+    border-radius: 50%;
+    box-shadow: 1px 1px 3px inset black;
+    cursor: nwse-resize;
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
 /*******************/
 /******* Admin *****/
 /*******************/
@@ -636,10 +650,10 @@ table tr a {
 
 @media screen and (max-width: 1100px) {
     body {
-        border: 1rem solid #f6f6f6;
+        border: none;
     }
     .site {
-        min-height: calc(100vh - 2rem);
+        min-height: 100vh;
     }
     .progressBar__container {
         width: 14rem;
