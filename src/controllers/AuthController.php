@@ -2,6 +2,7 @@
 namespace niluap\src\controllers;
 
 use niluap\core\Alert;
+use niluap\core\Auth;
 use niluap\core\Controller;
 use niluap\core\Router;
 use niluap\src\models\UsersManager;
@@ -15,10 +16,15 @@ use niluap\src\models\UsersManager;
 class AuthController extends Controller {
 
     public function login() {
+
+        if (Auth::isAdmin()) {
+            echo '<p class="info">Vous êtes déjà connectés.</p>';
+            exit();
+        }
         $usersManager = new UsersManager();
         $user = $usersManager->getUser($_POST['pseudo'], $_POST['password']);
         if (!$user) {
-            echo '<p class="error">Identifiants incorrects</p>';
+            echo '<p class="error">Identifiants incorrects.</p>';
         }
         if ($user['role'] === 'admin') {
             $_SESSION['admin'] = ['pseudo' => $user['pseudo']];

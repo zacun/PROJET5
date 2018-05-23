@@ -4,6 +4,7 @@ namespace niluap\src\controllers;
 use niluap\core\Alert;
 use niluap\core\Auth;
 use niluap\core\Controller;
+use niluap\core\File;
 use niluap\core\Router;
 use niluap\src\models\CommentsManager;
 use niluap\src\models\PostsManager;
@@ -97,16 +98,14 @@ class AdminController extends Controller {
             if (empty($name) || empty($description) || empty($path)) {
                 Alert::setAlert('Tous les champs ne sont pas remplis', 'error', 'alert');
             } else {
-                if (is_uploaded_file($_FILES['new-project-image']['tmp_name']) && $_FILES['new-project-image']['type'] === 'image/png' || $_FILES['new-project-image']['type'] === 'image/jpeg') {
-                    move_uploaded_file($_FILES['new-project-image']['tmp_name'], '../public/images/projects/' . $_FILES['new-project-image']['name']);
-                    $imagePath = '/public/images/projects/' . $_FILES['new-project-image']['name'];
+                $imagePath = File::uploadImage('new-project-image');
+                if ($imagePath !== null) {
                     $projectsManager = new ProjectsManager();
                     $projectsManager->newProject($name, $description, $path, $imagePath);
                     Alert::setAlert('Le projet a bien été ajouté', 'success', 'alert');
                     $this->redirect(Router::getUrl('admin'));
-                } else {
-                    Alert::setAlert('Le type de l\'image n\'est pas valable. Veuillez utiliser .png ou .jpg/.jpeg', 'error', 'alert');
                 }
+                Alert::setAlert('Le type de l\'image n\'est pas valable. Veuillez utiliser .png ou .jpg/.jpeg', 'error', 'alert');
             }
         }
         $this->render('newProject.twig', compact('name', 'description', 'path'));
@@ -143,25 +142,20 @@ class AdminController extends Controller {
             Alert::setAlert('Ce projet n\'existe pas.', 'error', 'alert');
             $this->redirect(Router::getUrl('admin'));
         }
-        $editProject = $projectsManager->getOneProject($_GET['id']);
         if (!empty($_POST)) {
             $name = trim($_POST['edit-project-name']);
             $description = trim($_POST['edit-project-description']);
             $path = trim($_POST['edit-project-path']);
-            $imagePath = $editProject['image_path'];
             if (empty($name) || empty($description) || empty($path)) {
                 Alert::setAlert('Tous les champs ne sont pas remplis', 'error', 'alert');
             } else {
-                if (is_uploaded_file($_FILES['edit-project-image']['tmp_name'])) {
-                    if ($_FILES['edit-project-image']['type'] === 'image/png' || $_FILES['edit-project-image']['type'] === 'image/jpeg') {
-                        unlink('..' . $editProject['image_path']);
-                        move_uploaded_file($_FILES['edit-project-image']['tmp_name'], '../public/images/projects/' . $_FILES['edit-project-image']['name']);
-                        $imagePath = '/public/images/projects/' . $_FILES['edit-project-image']['name'];
-                    } else {
-                        Alert::setAlert('Le type de l\'image n\'est pas valable. Veuillez utiliser .png ou .jpg/.jpeg', 'error', 'alert');
-                        $this->redirect(Router::getUrl('editProject') . '?id=' . $_GET['id']);
-                    }
+                $imagePath = File::uploadImage('edit-project-image');
+                if ($imagePath === null) {
+                    Alert::setAlert('Le type de l\'image n\'est pas valable. Veuillez utiliser .png ou .jpg/.jpeg', 'error', 'alert');
+                    $this->redirect(Router::getUrl('editProject') . '?id=' . $_GET['id']);
                 }
+                $editProject = $projectsManager->getOneProject($_GET['id']);
+                File::deleteImage('..' . $editProject['image_path']);
                 $projectsManager->editProject($_GET['id'], $name, $description, $path, $imagePath);
                 Alert::setAlert('Le projet a bien été édité', 'success', 'alert');
                 $this->redirect(Router::getUrl('admin'));
@@ -190,7 +184,7 @@ class AdminController extends Controller {
             $this->redirect(Router::getUrl('admin'));
         }
         $project = $projectsManager->getOneProject($_GET['id']);
-        unlink('..' . $project['image_path']);
+        File::deleteImage('..' . $project['image_path']);
         $projectsManager->deleteProject($_GET['id']);
         Alert::setAlert('Le projet a bien été supprimé.', 'success', 'alert');
         header('Location: ' . Router::getUrl('admin'));
