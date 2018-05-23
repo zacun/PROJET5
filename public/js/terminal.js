@@ -5,12 +5,14 @@ var terminal = {
         this.terminalBtn = document.querySelector('.terminal-button');
         this.terminalClose = document.querySelector('.terminal-close');
         this.terminalForm = document.querySelector('.terminal-form');
+        this.terminalScreen = document.querySelector('.terminal-text');
         this.inputCommand = null;
         this.commandName = null;
         this.param = null;
         this.terminalBtn.addEventListener('click', this.openAndClose);
         this.terminalClose.addEventListener('click', this.openAndClose);
         this.terminalForm.addEventListener('submit', this.submit);
+        window.addEventListener('load', this.getMessages);
     },
 
     openAndClose: function () {
@@ -36,22 +38,44 @@ var terminal = {
         if (command.indexOf(' ')) {
             var commands = command.split(/\s/);
             if (commands.length > 2) {
-                commandsFunctions.terminalText.innerHTML += '<p class="error">La commande ' + '"<i>' + terminal.commandName + '</i>"' + ' n\'existe pas.</p>'; // faire un système alert()
+                terminal.addMessage('<p class="error">La commande ' + '"<i>' + terminal.commandName + '</i>"' + ' n\'existe pas.</p>');
                 return;
             }
             terminal.commandName = commands[0];
             terminal.param = commands[1];
         }
         if (!(terminal.commandName in commandsList)) {
-            commandsFunctions.terminalText.innerHTML += '<p class="error">La commande ' + '"<i>' + terminal.commandName + '</i>"' + ' n\'existe pas.</p>';
+            terminal.addMessage('<p class="error">La commande ' + '"<i>' + terminal.commandName + '</i>"' + ' n\'existe pas.</p>');
             return;
         }
-        var functionToRun = commandsList[terminal.commandName];
+        var functionToRun = commandsList[terminal.commandName]['function'];
         functionToRun(terminal.param);
     },
 
     clearInput: function () {
         terminal.inputCommand.value = '';
+    },
+
+    addMessage: function (message) {
+        terminal.terminalScreen.innerHTML += message;
+        var messages = sessionStorage.getItem('messages');
+        if (!messages) {
+            messages = [];
+        } else {
+            messages = JSON.parse(messages);
+        }
+        messages.push(message);
+        sessionStorage.setItem('messages', JSON.stringify(messages));
+    },
+
+    getMessages: function () {
+        var messages = sessionStorage.getItem('messages');
+        if (messages) {
+            messages = JSON.parse(messages);
+            messages.forEach(function (message) {
+                terminal.terminalScreen.innerHTML += message;
+            });
+        }
     }
 
 };
