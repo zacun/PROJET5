@@ -1,35 +1,37 @@
-var resizeTerminal = {
+// This script allows you to freely resize the terminal
+
+var Resize = function (elementToResize, elementForResizing) {
+
+    var self = this;
+    this.elementToResize = elementToResize;
+    this.resizingBtn = elementForResizing;
+    this.resizingBtnHeight = this.resizingBtn.offsetHeight;
+    this.resizingBtnWidth = this.resizingBtn.offsetWidth;
+    this.resizing = false;
+    this.rect = 0;
+    this.resizingBtn.addEventListener('mousedown', begin);
+    window.addEventListener('mousemove', resize);
+    window.addEventListener('mouseup', end);
+
+
+    function begin () {
+        self.resizing = true;
+        self.rect = self.elementToResize.getBoundingClientRect();
+    }
     
-    init: function () {
-        this.terminalElt = terminalElt = document.querySelector('#terminal');
-        this.resizeBtn = document.querySelector('.terminal-resize');
-        this.resizingBtnHeight = this.resizeBtn.offsetTop;
-        this.resizingBtnWidth = this.resizeBtn.offsetLeft;
-        this.resizing = false;
-        this.rect = 0;
-        this.resizeBtn.addEventListener('mousedown', this.begin);
-        window.addEventListener('mousemove', this.resize);
-        window.addEventListener('mouseup', this.end);
-    },
-    
-    begin: function () {
-        resizeTerminal.resizing = true;
-        resizeTerminal.rect = resizeTerminal.terminalElt.getBoundingClientRect();
-    },
-    
-    resize: function (e) {
+    function resize (e) {
         e.preventDefault();
-        if (resizeTerminal.resizing) {
-            var diffX = e.clientX - resizeTerminal.rect.x + resizeTerminal.resizingBtnWidth;
-            var diffY = e.clientY - resizeTerminal.rect.y + resizeTerminal.resizingBtnHeight;
-            resizeTerminal.terminalElt.style.height = diffY + 'px';
-            resizeTerminal.terminalElt.style.width = diffX + 'px';
+        if (self.resizing) {
+            var diffX = e.clientX - self.rect.x + self.resizingBtnWidth / 4; // divided by 4 -> because my resize button has "transform: translate3D(25%, 25%, 0)"; which make it go out of the parent element.
+            var diffY = e.clientY - self.rect.y + self.resizingBtnHeight / 4;
+            self.elementToResize.style.height = diffY + 'px';
+            self.elementToResize.style.width = diffX + 'px';
         }
-    },
+    }
     
-    end: function () {
-        resizeTerminal.resizing = false;
+    function end () {
+        self.resizing = false;
     }
     
 };
-resizeTerminal.init();
+Resize(document.querySelector('#terminal'), document.querySelector('.terminal-resize'));

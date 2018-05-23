@@ -1,85 +1,89 @@
-// This script allows to freely move the terminal
+// This script allows you to freely move the terminal
 
-var moveTerminal = {
+var Move = function (elementToMove, elementForMoving) {
 
-    init: function () {
-        this.terminalElt = terminalElt = document.querySelector('#terminal');
-        this.terminalMoveBar = document.querySelector('.terminal-name');
-        this.moving = false;
-        this.diffX = 0;
-        this.diffY = 0;
-        this.terminalMoveBar.addEventListener('mousedown', this.begin);
-        window.addEventListener('mousemove', this.move);
-        window.addEventListener('mouseup', this.end);
-    },
+    var self = this;
+    this.elementToMove = elementToMove;
+    if (elementForMoving === undefined) {
+        this.elementForMoving = elementToMove;
+    }
+    this.elementForMoving = elementForMoving;
+    this.moving = false;
+    this.diffX = 0;
+    this.diffY = 0;
+    this.elementForMoving.addEventListener('mousedown', begin);
+    window.addEventListener('mousemove', move);
+    window.addEventListener('mouseup', end);
     
-    begin: function (e) {
-        moveTerminal.moving = true;
-        var rect = terminalElt.getBoundingClientRect();
-        moveTerminal.diffX = e.clientX - rect.x;
-        moveTerminal.diffY = e.clientY - rect.y;
-        moveTerminal.terminalElt.style.zIndex = 9000;
-    },
+    function begin (e) {
+        self.moving = true;
+        var rect = self.elementToMove.getBoundingClientRect();
+        self.diffX = e.clientX - rect.x;
+        self.diffY = e.clientY - rect.y;
+        self.elementToMove.style.zIndex = 9000;
+    }
     
-    move: function (e) {
-        if (moveTerminal.moving) {
-            moveTerminal.terminalElt.style.left = e.clientX - moveTerminal.diffX + 'px';
-            moveTerminal.terminalElt.style.top = e.clientY - moveTerminal.diffY + 'px';
+    function move (e) {
+        if (self.moving) {
+            self.elementToMove.style.left = e.clientX - self.diffX + 'px';
+            self.elementToMove.style.top = e.clientY - self.diffY + 'px';
         }
-    },
+    }
     
-    end: function () {
-        if (moveTerminal.moving) {
-            moveTerminal.moving = false;
+    function end () {
+        if (self.moving) {
+            self.moving = false;
         }
     }
 
 };
-moveTerminal.init();
 
-var moveMobile = {
+var MoveMobile = function (elementToMove, elementForMoving) {
 
-    init: function () {
-        this.terminalElt = terminalElt = document.querySelector('#terminal');
-        this.terminalMoveBar = document.querySelector('.terminal-name');
-        this.moving = false;
-        this.diffX = 0;
-        this.diffY = 0;
-        this.terminalMoveBar.addEventListener('touchstart', this.begin);
-        window.addEventListener('touchmove', this.move);
-        window.addEventListener('touchend', this.end);
-        window.addEventListener('touchleave', this.end);
-        window.addEventListener('touchcancel', this.end);
-    },
+    var self = this;
+    this.elementToMove = elementToMove;
+    if (elementForMoving === undefined) {
+        this.elementForMoving = elementToMove;
+    }
+    this.elementForMoving = elementForMoving;
+    this.moving = false;
+    this.diffX = 0;
+    this.diffY = 0;
+    this.elementForMoving.addEventListener('touchstart', begin);
+    window.addEventListener('touchmove', move);
+    window.addEventListener('touchend', end);
+    window.addEventListener('touchleave', end);
+    window.addEventListener('touchcancel', end);
 
-    begin: function (e) {
+    function begin (e) {
         e.preventDefault();
-        moveMobile.moving = true;
+        self.moving = true;
         var rect = terminalElt.getBoundingClientRect();
-        moveMobile.terminalElt.style.zIndex = 9000;
+        self.terminalElt.style.zIndex = 9000;
         var touches = e.changedTouches;
         for (var i = 0; i < touches.length; i++) {
-            moveMobile.diffX = touches[i].clientX - rect.x;
-            moveMobile.diffY = touches[i].clientY - rect.y;
+            self.diffX = touches[i].clientX - rect.x;
+            self.diffY = touches[i].clientY - rect.y;
         }
-    },
+    }
 
-    move: function (e) {
+    function move (e) {
         e.preventDefault();
         var touches = e.changedTouches;
-        if (moveMobile.moving) {
+        if (self.moving) {
             for (var i = 0; i < touches.length; i++) {
-                moveMobile.terminalElt.style.left = touches[i].clientX - moveMobile.diffX + 'px';
-                moveMobile.terminalElt.style.top = touches[i].clientY - moveMobile.diffY + 'px';
+                self.terminalElt.style.left = touches[i].clientX - self.diffX + 'px';
+                self.terminalElt.style.top = touches[i].clientY - self.diffY + 'px';
             }
         }
-    },
+    }
 
-    end: function () {
-        if (moveMobile.moving) {
-            moveMobile.moving = false;
+    function end () {
+        if (self.moving) {
+            self.moving = false;
         }
     }
 
 };
-moveMobile.init();
+Move(document.querySelector('#terminal'), document.querySelector('.terminal-name'));
+MoveMobile(document.querySelector('#terminal'), document.querySelector('.terminal-name'));

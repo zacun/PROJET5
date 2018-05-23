@@ -63,21 +63,22 @@
 </div>
 <!-- End of terminal window -->
 
-<script src="/public/js/terminal.js"></script>
 <script>
     var routes = {
         'home': '{{ 'home'|getUrl }}',
         'blog': '{{ 'blog'|getUrl }}',
         'portfolio': '{{ 'portfolio'|getUrl }}',
         'cv': '{{ 'cv'|getUrl }}',
-        'admin': '{{ 'admin'|getUrl }}'
+        'admin': '{{ 'admin'|getUrl }}',
+        'login': '{{ 'login'|getUrl }}',
+        'logout': '{{ 'logout'|getUrl }}'
     };
 </script>
+<script src="/public/js/terminal.js"></script>
 <script src="/public/js/move.js"></script>
 <script src="/public/js/resize.js"></script>
 <script src="/public/js/commandsFunctions.js"></script>
 <script src="/public/js/commandsList.js"></script>
-<script src="/public/js/commands.js"></script>
 {% block scripts %}
 {% endblock %}
 </body>
