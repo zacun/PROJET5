@@ -10,13 +10,13 @@ var Resize = function (elementToResize, elementForResizing) {
     this.resizing = false;
     this.rect = 0;
     this.resizingBtn.addEventListener('mousedown', begin);
-    window.addEventListener('mousemove', resize);
     window.addEventListener('mouseup', end);
 
 
     function begin () {
         self.resizing = true;
         self.rect = self.elementToResize.getBoundingClientRect();
+        window.addEventListener('mousemove', resize);
     }
     
     function resize (e) {
@@ -31,7 +31,8 @@ var Resize = function (elementToResize, elementForResizing) {
     
     function end () {
         self.resizing = false;
+        window.removeEventListener('mousemove', resize);
     }
     
 };
-Resize(document.querySelector('#terminal'), document.querySelector('.terminal-resize'));
+Resize(terminal.terminalElt, document.querySelector('.terminal-resize'));

@@ -12,7 +12,6 @@ var Move = function (elementToMove, elementForMoving) {
     this.diffX = 0;
     this.diffY = 0;
     this.elementForMoving.addEventListener('mousedown', begin);
-    window.addEventListener('mousemove', move);
     window.addEventListener('mouseup', end);
     
     function begin (e) {
@@ -21,6 +20,7 @@ var Move = function (elementToMove, elementForMoving) {
         self.diffX = e.clientX - rect.x;
         self.diffY = e.clientY - rect.y;
         self.elementToMove.style.zIndex = 9000;
+        window.addEventListener('mousemove', move);
     }
     
     function move (e) {
@@ -33,6 +33,7 @@ var Move = function (elementToMove, elementForMoving) {
     function end () {
         if (self.moving) {
             self.moving = false;
+            window.removeEventListener('mousemove', move);
         }
     }
 
@@ -85,5 +86,5 @@ var MoveMobile = function (elementToMove, elementForMoving) {
     }
 
 };
-Move(document.querySelector('#terminal'), document.querySelector('.terminal-name'));
-MoveMobile(document.querySelector('#terminal'), document.querySelector('.terminal-name'));
+Move(terminal.terminalElt, document.querySelector('.terminal-name'));
+MoveMobile(terminal.terminalElt, document.querySelector('.terminal-name'));
