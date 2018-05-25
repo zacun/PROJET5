@@ -28,6 +28,9 @@
                 <a {{ 'admin'|getUrl|getActiveMenu }} href="{{ 'admin'|getUrl }}">Admin</a>
             {% endif %}
         </div>
+        <div class="terminal-button" data-tooltip="Ouvrir/Fermer le terminal">
+            <i class="fas fa-window-maximize fa-5x"></i>
+        </div>
     </nav>
     <div class="site-content">
         {{ getAlert('alert') }}
@@ -40,7 +43,7 @@
             </p>
             <div class="site-header__progressBar">
                 <p>
-                    Progression de la formation à 85%.<br>Obtention du diplôme estimée pour fin Mai 2018.
+                    Progression de la formation à 95%.<br>Obtention du diplôme estimée pour fin Mai 2018.
                 </p>
                 <div class="progressBar__container">
                     <div class="progressBar__content"></div>
@@ -73,9 +76,6 @@
         </form>
     </div>
     <div class="terminal-resize"></div>
-</div>
-<div class="terminal-button" data-tooltip="Ouvrir/Fermer le terminal">
-    <i class="fas fa-window-maximize fa-5x"></i>
 </div>
 <!-- End of terminal window -->
 

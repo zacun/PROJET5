@@ -14,7 +14,7 @@ var commandsFunctions = {
 
     get: function (path) {
         var url = routes[path];
-        terminal.addMessage('<p>Redirection vers la page ' + path +'...</p>');
+        terminal.terminalScreen.innerHTML += '<p class="info">Redirection vers la page ' + path +'...</p>';
         window.location.href = url;
     },
     
@@ -33,9 +33,10 @@ var commandsFunctions = {
                 '<button type="submit">Valider</button>' +
             '</form>';
         var formPass = document.querySelector('.form-pass');
+        var inputPass = document.querySelector('#commandPass');
+        inputPass.focus();
         formPass.addEventListener('submit', function (e) {
             e.preventDefault();
-            var inputPass = document.querySelector('#commandPass');
             var password = inputPass.value;
             var data = new FormData();
             data.append('pseudo', pseudo);

@@ -9,8 +9,15 @@ var terminal = {
         this.inputCommand = null;
         this.commandName = null;
         this.param = null;
-        this.terminalBtn.addEventListener('click', this.openAndClose);
-        this.terminalClose.addEventListener('click', this.openAndClose);
+        ['click', 'touchend'].forEach(function (e) {
+            terminal.terminalBtn.addEventListener(e, terminal.openAndClose);
+            terminal.terminalClose.addEventListener(e, terminal.openAndClose);
+        });
+        window.addEventListener('keydown', function (e) {
+            if (e.altKey && e.keyCode === 84 /* alt+ t */) {
+                terminal.openAndClose();
+            }
+        });
         this.terminalForm.addEventListener('submit', this.submit);
         window.addEventListener('load', this.getMessages);
     },

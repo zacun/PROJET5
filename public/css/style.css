@@ -217,7 +217,7 @@ h2 {
 
 .progressBar__content {
     height: 100%;
-    width: 85%;
+    width: 95%;
     background: #4ba7f2;
     border-radius: 16px;
     box-shadow: 1px 1px 1px 1px black;
@@ -511,6 +511,7 @@ h2 {
 .terminal-text {
     padding: 0 0.5rem;
     flex: 1;
+    overflow-y: auto;
 }
 
 .terminal-text p {
@@ -522,21 +523,19 @@ h2 {
 }
 
 .terminal-button {
-    position: fixed;
-    right: 3rem;
-    bottom: 3rem;
+    position: relative;
 }
 
 .terminal-button::after {
     content: attr(data-tooltip);
     color: black;
     font-size: 1rem;
-    background: rgba(255, 255, 255, 0.8) url('../images/blog/cogs.png') no-repeat 1% 50% / auto 80%;
+    background: rgba(255, 255, 255, 0.8) url('../images/blog/cogs.png') no-repeat 1% 50% / 35% 50%;
     position: absolute;
-    top: 10px;
+    top: 30px;
     left: 0;
-    width: 12rem;
-    padding: .5rem 0 .5rem 4rem;
+    width: 10rem;
+    padding: .5rem 0 .5rem 3rem;
     box-shadow: 0 0 5px rgba(0, 0, 0, .25);
     transition: all .25s ease-in-out;
     opacity: 0;
@@ -545,7 +544,7 @@ h2 {
 
 .terminal-button:hover::after {
     opacity: 1;
-    left: -200px;
+    left: 180px;
 }
 
 .terminal-button:hover {

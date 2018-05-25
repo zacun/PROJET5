@@ -58,8 +58,8 @@ var MoveMobile = function (elementToMove, elementForMoving) {
     function begin (e) {
         e.preventDefault();
         self.moving = true;
-        var rect = terminalElt.getBoundingClientRect();
-        self.terminalElt.style.zIndex = 9000;
+        var rect = self.elementToMove.getBoundingClientRect();
+        self.elementToMove.style.zIndex = 9000;
         var touches = e.changedTouches;
         for (var i = 0; i < touches.length; i++) {
             self.diffX = touches[i].clientX - rect.x;
@@ -72,8 +72,8 @@ var MoveMobile = function (elementToMove, elementForMoving) {
         var touches = e.changedTouches;
         if (self.moving) {
             for (var i = 0; i < touches.length; i++) {
-                self.terminalElt.style.left = touches[i].clientX - self.diffX + 'px';
-                self.terminalElt.style.top = touches[i].clientY - self.diffY + 'px';
+                self.elementToMove.style.left = touches[i].clientX - self.diffX + 'px';
+                self.elementToMove.style.top = touches[i].clientY - self.diffY + 'px';
             }
         }
     }

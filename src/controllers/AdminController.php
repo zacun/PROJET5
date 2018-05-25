@@ -161,6 +161,7 @@ class AdminController extends Controller {
                 $this->redirect(Router::getUrl('admin'));
             }
         }
+        $editProject = $projectsManager->getOneProject($_GET['id']);
         $this->render('editProject.twig', compact('editProject'));
     }
 
