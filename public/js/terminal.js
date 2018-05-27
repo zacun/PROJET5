@@ -1,11 +1,11 @@
 var terminal = {
 
     init: function () {
-        this.terminalElt = document.querySelector('#terminal');
-        this.terminalBtn = document.querySelector('.terminal-button');
-        this.terminalClose = document.querySelector('.terminal-close');
-        this.terminalForm = document.querySelector('.terminal-form');
-        this.terminalScreen = document.querySelector('.terminal-text');
+        this.terminalElt = document.getElementById('terminal');
+        this.terminalBtn = document.getElementsByClassName('terminal-button')[0];
+        this.terminalClose = document.getElementsByClassName('terminal-close')[0];
+        this.terminalForm = document.getElementsByClassName('terminal-form')[0];
+        this.terminalScreen = document.getElementsByClassName('terminal-text')[0];
         this.inputCommand = null;
         this.commandName = null;
         this.param = null;
@@ -23,16 +23,12 @@ var terminal = {
     },
 
     openAndClose: function () {
-        if (terminal.terminalElt.classList.contains('off')) {
-            terminal.terminalElt.className = 'terminal-on';
-        } else {
-            terminal.terminalElt.className = 'off';
-        }
+        terminal.terminalElt.classList.toggle('terminal-on');
     },
 
     submit: function (e) {
         e.preventDefault();
-        terminal.inputCommand = document.querySelector('#command');
+        terminal.inputCommand = document.getElementById('command');
         var inputValue = terminal.inputCommand.value;
         terminal.clearInput();
         inputValue.trim();
@@ -45,14 +41,14 @@ var terminal = {
         if (command.indexOf(' ')) {
             var commands = command.split(/\s/);
             if (commands.length > 2) {
-                terminal.addMessage('<p class="error">La commande ' + '"<i>' + terminal.commandName + '</i>"' + ' n\'existe pas.</p>');
+                terminal.unknownCommand();
                 return;
             }
             terminal.commandName = commands[0];
             terminal.param = commands[1];
         }
         if (!(terminal.commandName in commandsList)) {
-            terminal.addMessage('<p class="error">La commande ' + '"<i>' + terminal.commandName + '</i>"' + ' n\'existe pas.</p>');
+            terminal.unknownCommand();
             return;
         }
         var functionToRun = commandsList[terminal.commandName]['function'];
@@ -63,26 +59,42 @@ var terminal = {
         terminal.inputCommand.value = '';
     },
 
-    addMessage: function (message) {
-        terminal.terminalScreen.innerHTML += message;
+    unknownCommand: function () {
+        terminal.addMessage('La commande "<i>' + terminal.commandName + '</i>" n\'existe pas.', 'error', true);
+    },
+
+    addMessage: function (message, type, toStore) {
+        var messageElt;
+        if (type === null) {
+            messageElt = message;
+        } else {
+            messageElt = '<p class="' + type + '">' + message + '</p>';
+        }
+        if (toStore) {
+            var messages = terminal.getStoredMessages();
+            messages.push(messageElt);
+            sessionStorage.setItem('messages', JSON.stringify(messages));
+        }
+        terminal.terminalScreen.innerHTML += messageElt;
+    },
+
+    getMessages: function () {
+        var messages = terminal.getStoredMessages();
+        if (messages.length > 0) {
+            messages.forEach(function (message) {
+                terminal.terminalScreen.innerHTML += message;
+            });
+        }
+    },
+
+    getStoredMessages : function () {
         var messages = sessionStorage.getItem('messages');
         if (!messages) {
             messages = [];
         } else {
             messages = JSON.parse(messages);
         }
-        messages.push(message);
-        sessionStorage.setItem('messages', JSON.stringify(messages));
-    },
-
-    getMessages: function () {
-        var messages = sessionStorage.getItem('messages');
-        if (messages) {
-            messages = JSON.parse(messages);
-            messages.forEach(function (message) {
-                terminal.terminalScreen.innerHTML += message;
-            });
-        }
+        return messages;
     }
 
 };

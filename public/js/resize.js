@@ -35,4 +35,4 @@ var Resize = function (elementToResize, elementForResizing) {
     }
     
 };
-Resize(terminal.terminalElt, document.querySelector('.terminal-resize'));
+new Resize(terminal.terminalElt, document.getElementsByClassName('terminal-resize')[0]);

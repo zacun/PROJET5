@@ -86,5 +86,5 @@ var MoveMobile = function (elementToMove, elementForMoving) {
     }
 
 };
-Move(terminal.terminalElt, document.querySelector('.terminal-name'));
-MoveMobile(terminal.terminalElt, document.querySelector('.terminal-name'));
+new Move(terminal.terminalElt, document.getElementsByClassName('terminal-name')[0]);
+new MoveMobile(terminal.terminalElt, document.getElementsByClassName('terminal-name')[0]);
