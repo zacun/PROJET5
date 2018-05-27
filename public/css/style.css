@@ -679,11 +679,144 @@ table tr a {
     }
     .site {
         min-height: 100vh;
+        flex-direction: column;
+    }
+    .site-content {
+        margin-bottom: 250px;
+        padding: 1rem;
+    }
+    .site-menu {
+        position: fixed;
+        width: auto;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin: 0;
+    }
+    .site-menu-admin {
+        position: fixed;
+        width: auto;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin: 0 0 100px 0;
+    }
+    .site-menu > div, .site-menu-admin > div {
+        flex-direction: row;
+        padding: 0.5rem;
+        justify-content: center;
+    }
+    .last-projects, .last-posts {
+        flex-wrap: wrap;
+    }
+    .singlepost-post, .singlepost-comments {
+        width: auto;
+    }
+    .terminal-button {
+        position: fixed;
+        top: 1rem;
+        left:1rem;
     }
     .progressBar__container {
-        width: 14rem;
+        width: 20rem;
     }
     .site-header__description a::after {
+        display: none;
+    }
+    #terminal {
+        top: 0;
+        left: 0;
+        right: 0;
+        border-radius: 0;
+        height: 50vh;
+        width: auto;
+        opacity: 0.95;
+    }
+    .list-container {
+        flex-direction: column;
+    }
+    .mce-tinymce {
+        width: auto !important;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    .progressBar__container {
+        width: 75vw;
+    }
+    .site-menu a {
+        height: 3rem;
+        font-size: 1rem;
+    }
+    .site-menu-admin {
+        margin: 0 0 65px 0;
+    }
+    .site-menu-admin > div {
+        padding: 0.25rem;
+    }
+    .site-menu-admin a {
+        height: 3rem;
+        font-size: 0.75rem;
+    }
+    .site-content {
+        padding: 0.25rem;
+    }
+    .terminal-button {
+        top: 0;
+        left: 0.5rem;
+        font-size: 0.25rem;
+    }
+    h2 {
+        font-size: 1.5rem;
+    }
+    .portfolio-item {
+        margin: 0.25rem;
+        width: 300px;
+    }
+    .last-posts article {
+        margin: 0.25rem;
+        width: 300px;
+    }
+    #contact {
+        max-width: 300px;
+        margin: auto;
+    }
+    #contact-message {
+        width: 300px;
+        margin: auto;
+    }
+    .blog #searchbar {
+        margin: 0;
+    }
+    .blog-post {
+        width: auto;
+    }
+    thead {
+        display: none;
+    }
+    tr {
+        display: flex;
+        flex-direction: column;
+        border: 1px solid black;
+        margin: 1rem;
+    }
+    #terminal {
+        height: 100vh;
+    }
+    #terminal-content {
+        margin: 0;
+    }
+    .terminal-text {
+        padding: 0 0.25rem;
+        flex: initial;
+    }
+    #terminal-content form {
+        height: 3rem;
+    }
+    #terminal-content button {
+        width: 20%;
+    }
+    .terminal-resize {
         display: none;
     }
 }
