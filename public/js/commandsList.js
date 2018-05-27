@@ -20,6 +20,11 @@ var commandsList = {
         'description': 'Permet de se déconnecter.'
     },
 
+    'contact': {
+        'function': commandsFunctions.contact,
+        'description': 'Affiche les différents moyens de me contacter.'
+    },
+
     'download': {
         'function': commandsFunctions.download,
         'description': 'Permet de télécharger un fichier, ex : "download cv" vous permettra de télécharger le pdf de mon CV.'

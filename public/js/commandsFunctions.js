@@ -61,6 +61,17 @@ var commandsFunctions = {
             }
         });
     },
+
+    contact: function () {
+        terminal.addMessage('Vous pouvez me contacter :', 'info', true);
+        terminal.addMessage(
+            '<ul>' +
+                '<li>&gt;&gt; <a target="_top" href="mailto:batpaulin@gmail.com">En cliquant ici</a> &lt;&lt;</li>' +
+                '<li><a href="' + routes.home + '#contact">Via le formulaire de contact</a></li>' +
+                '<li>Directement avec l\'addresse mail : <i>batpaulin@gmail.com</i></li>' +
+            '</ul>', null, true
+        );
+    },
     
     download: function (file) {
         window.location = '../public/download/' + file + '.pdf';
