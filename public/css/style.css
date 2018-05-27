@@ -44,18 +44,6 @@ h2 {
     text-align: center;
 }
 
-.off {
-    display: none;
-}
-
-.on {
-    display: block;
-}
-
-.terminal-on {
-    display: flex;
-}
-
 .alert, .notif {
     padding: 1rem;
     box-shadow: 1px 1px 3px 1px black;
@@ -63,7 +51,7 @@ h2 {
     font-size: 1.5rem;
     font-weight: bold;
     margin: 1rem auto;
-    width: 100%;
+    width: 90%;
 }
 
 .info {
@@ -76,11 +64,6 @@ h2 {
 
 .error {
     background-color: rgba(242, 24, 24, 0.6);
-}
-
-.article-name {
-    font-size: 12px;
-    font-weight: normal;
 }
 
 /*******************/
@@ -116,6 +99,11 @@ h2 {
     width: 16rem;
     position: relative;
     flex-direction: column;
+}
+
+.article-name {
+    font-size: 12px;
+    font-weight: normal;
 }
 
 .site-menu-admin a {
@@ -248,9 +236,9 @@ h2 {
     margin-top: 2rem;
 }
 
-/******************/
-/****** Home ******/
-/******************/
+/************/
+/*** Home ***/
+/************/
 
 .home {
     text-align: center;
@@ -296,18 +284,13 @@ h2 {
     transform: scale(1.1);
 }
 
-.contact-show {
-    font-size: 1.5rem;
-    cursor: pointer;
-}
-
 .contact-form input {
     margin: 0.5rem;
 }
 
-/******************/
-/****** Blog ******/
-/******************/
+/************/
+/*** Blog ***/
+/************/
 
 .blog {
     text-align: center;
@@ -437,11 +420,46 @@ h2 {
     width: 100%;
 }
 
-/*****************/
-/*** Terminal ****/
-/*****************/
+/*************************/
+/*** Curriculum Vitae ****/
+/*************************/
+
+.cv > div {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.cv > div div {
+    margin: 0 1rem;
+    padding: 1rem;
+    flex: 1;
+    transition: all 0.25s;
+}
+
+.cv > div div:hover {
+    transform: scale(1.05);
+    box-shadow: 1px 1px 2px 2px black;
+}
+
+.cv h3 {
+    color: rgb(68, 114, 196);
+    border-bottom: 1px solid black;
+}
+
+.cv ul {
+    padding-left: 0;
+}
+
+.cv li {
+    list-style-type: none;
+}
+
+/********************/
+/***** Terminal *****/
+/********************/
 
 #terminal {
+    display: none;
     flex-direction: column;
     justify-content: center;
     width: 35rem;
@@ -455,6 +473,10 @@ h2 {
     font-family: 'Play', sans-serif;
     color: white;
     overflow: hidden;
+}
+
+.terminal-on {
+    display: flex !important;
 }
 
 .terminal-name {
@@ -564,9 +586,13 @@ h2 {
     height: 1.5rem;
 }
 
-/*******************/
-/******* Admin *****/
-/*******************/
+.terminal-text ul li a {
+    color: white;
+}
+
+/*****************/
+/***** Admin *****/
+/*****************/
 
 .site-main-admin .list-container {
     display: flex;
@@ -608,9 +634,9 @@ table tr a {
     color: limegreen;
 }
 
-/*******************/
-/***** Comments ****/
-/*******************/
+/****************/
+/*** Comments ***/
+/****************/
 
 .new-comments-list, .all-comments-list {
     width: 80%;
@@ -619,9 +645,9 @@ table tr a {
 }
 
 
-/**********************/
-/******* New Post *****/
-/**********************/
+/****************/
+/*** New Post ***/
+/****************/
 
 .form-post {
     text-align: center;
@@ -631,9 +657,9 @@ table tr a {
     align-items: center;
 }
 
-/*************************/
-/******* New Project *****/
-/*************************/
+/*******************/
+/*** New Project ***/
+/*******************/
 
 .form-project {
     text-align: center;
@@ -643,9 +669,9 @@ table tr a {
     align-items: center;
 }
 
-/*****************/
-/***** Media *****/
-/*****************/
+/*************************/
+/***** Media Queries *****/
+/*************************/
 
 @media screen and (max-width: 1100px) {
     body {
