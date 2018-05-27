@@ -37,12 +37,10 @@
         <h2>Contact</h2>
         <p>
             Vous souhaitez me contacter ?<br>
-            Utilisez le formulaire de contact ou bien directement via l'adresse mail suivante :<br>
-            <em>batpaulin@gmail.com</em>
+            Utilisez le formulaire le formulaire ci-dessous ou bien tapez <strong><i>contact</i></strong> dans le terminal.
         </p>
         <div class="contact">
-            <p class="contact-show"><span class="contact-show-message">+ Afficher</span> le formulaire de contact</p>
-            <form action="{{ 'contactForm'|getUrl }}" method="post" class="contact-form off">
+            <form action="{{ 'contactForm'|getUrl }}" method="post" class="contact-form">
                 <input type="text" title="contact-name" id="contact-name" name="contact-name" placeholder="Votre nom..." value="{{ name }}" required>
                 <input type="email" title="contact-mail" id="contact-mail" name="contact-mail" placeholder="Votre mail..." value="{{ mail }}" required><br>
                 <input type="text" title="contact-subject" id="contact-subject" name="contact-subject" placeholder="Sujet..." value="{{ subject }}" required><br>
@@ -51,8 +49,4 @@
             </form>
         </div>
     </section>
-{% endblock %}
-
-{% block scripts %}
-    <script src="../../public/js/contact.js"></script>
 {% endblock %}

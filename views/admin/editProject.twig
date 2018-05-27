@@ -2,8 +2,8 @@
 {% block title 'Editer ' ~ editProject.name %}
 {% block mainAdmin %}
     <section class="form-project">
-        <h2>Nouveau projet</h2>
-        <form action="{{ 'editProject'|getUrl ~ '?id=' ~ editPost.id }}" method="post" enctype="multipart/form-data">
+        <h2>Editer un projet</h2>
+        <form action="{{ 'editProject'|getUrl ~ '?id=' ~ editProject.id }}" method="post" enctype="multipart/form-data">
             <p>
                 <label for="edit-project-name">Nom du projet</label><br>
                 <input type="text" id="edit-project-name" name="edit-project-name" value="{{ editProject.name }}" required>
