@@ -20,24 +20,24 @@ class AuthController extends Controller {
         $usersManager = new UsersManager();
         $user = $usersManager->getUser($_POST['pseudo'], $_POST['password']);
         if (!$user) {
-            echo '<p class="error">Identifiants incorrects.</p>';
+            echo 'wrong logins';
         }
         if ($user['role'] === 'admin') {
             if (Auth::isAdmin()) {
-                echo 2;
+                echo 'already connected';
                 exit();
             }
             $_SESSION['admin'] = ['pseudo' => $user['pseudo']];
-            echo 1;
+            echo 'connection successful';
         }
     }
 
     public function logout() {
         if (isset($_SESSION['admin'])) {
             unset($_SESSION['admin']);
-            echo 1;
+            echo 'logout successful';
         } else {
-            echo '<p class="info">Vous n\'êtes pas connecté.</p>';
+            echo 'not connected';
         }
     }
 

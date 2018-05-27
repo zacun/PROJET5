@@ -155,7 +155,11 @@ class AdminController extends Controller {
                     $this->redirect(Router::getUrl('editProject') . '?id=' . $_GET['id']);
                 }
                 $editProject = $projectsManager->getOneProject($_GET['id']);
-                File::deleteImage('..' . $editProject['image_path']);
+                if (!$imagePath) {
+                    $imagePath = $editProject['image_path'];
+                } else {
+                    File::deleteImage('..' . $editProject['image_path']);
+                }
                 $projectsManager->editProject($_GET['id'], $name, $description, $path, $imagePath);
                 Alert::setAlert('Le projet a bien été édité', 'success', 'alert');
                 $this->redirect(Router::getUrl('admin'));
