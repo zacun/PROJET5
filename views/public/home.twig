@@ -29,9 +29,17 @@
             {% endfor %}
         </div>
     </section>
-    <section class="home terminal-readme">
+    <section class="home">
         <h2>Terminal de navigation : utilisation</h2>
-        <p>A venir !</p>
+        <p>Le terminal de navigation est un outil sous forme de console/terminal permettant de réaliser diverses actions sur le site.</p>
+        <p>
+            Vous pouvez y accéder en cliquant sur l'icone <i class="fas fa-window-maximize"></i><br>
+            ou en effectuant la combinaison des touches suivant : <i>ALT + T</i>
+        </p>
+        <p>
+            Le terminal est amené à évoluer avec l'implémentation de fonctions supplémentaires au fil du temps.<br>
+            Ainsi, il pourra devenir un véritable outil d'administration et de navigation ludique.
+        </p>
     </section>
     <section class="home">
         <h2>Contact</h2>
@@ -39,12 +47,12 @@
             Vous souhaitez me contacter ?<br>
             Utilisez le formulaire le formulaire ci-dessous ou bien tapez <strong><i>contact</i></strong> dans le terminal.
         </p>
-        <div class="contact">
+        <div id="contact">
             <form action="{{ 'contactForm'|getUrl }}" method="post" class="contact-form">
                 <input type="text" title="contact-name" id="contact-name" name="contact-name" placeholder="Votre nom..." value="{{ name }}" required>
                 <input type="email" title="contact-mail" id="contact-mail" name="contact-mail" placeholder="Votre mail..." value="{{ mail }}" required><br>
                 <input type="text" title="contact-subject" id="contact-subject" name="contact-subject" placeholder="Sujet..." value="{{ subject }}" required><br>
-                <textarea title="contact-message" id="contact-message" name="contact-message" placeholder="Votre message..." cols="80" rows="20" required>{{ message }}</textarea><br>
+                <textarea title="contact-message" id="contact-message" name="contact-message" placeholder="Votre message..." cols="60" rows="15" required>{{ message }}</textarea><br>
                 <button type="submit">Envoyer</button>
             </form>
         </div>
