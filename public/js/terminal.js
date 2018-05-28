@@ -32,9 +32,8 @@ var terminal = {
         var inputValue = terminal.inputCommand.value;
         terminal.clearInput();
         inputValue.trim();
-        inputValue.toLowerCase();
-        terminal.commandName = inputValue;
-        terminal.runCommand(inputValue);
+        terminal.commandName = inputValue.toLowerCase();
+        terminal.runCommand(inputValue.toLowerCase());
     },
 
     runCommand: function (command) {
