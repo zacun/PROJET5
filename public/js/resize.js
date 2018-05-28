@@ -35,4 +35,42 @@ var Resize = function (elementToResize, elementForResizing) {
     }
     
 };
+
+var ResizeMobile = function (elementToResize, elementForResizing) {
+
+    var self = this;
+    this.elementToResize = elementToResize;
+    this.resizingBtn = elementForResizing;
+    this.resizingBtnHeight = this.resizingBtn.offsetHeight;
+    this.resizing = false;
+    this.rect = 0;
+    this.resizingBtn.addEventListener('touchstart', begin);
+    window.addEventListener('touchend', end);
+
+
+    function begin (e) {
+        e.preventDefault();
+        self.resizing = true;
+        self.rect = self.elementToResize.getBoundingClientRect();
+        window.addEventListener('touchmove', resize);
+    }
+
+    function resize (e) {
+        e.preventDefault();
+        var touches = e.changedTouches;
+        if (self.resizing) {
+            for (var i = 0; i < touches.length; i++) {
+                var diffY = touches[i].clientY - self.rect.y + self.resizingBtnHeight / 4; // divided by 4 -> because my resize button has "transform: translate3D(25%, 25%, 0)"; which make it go out of the parent element.
+                self.elementToResize.style.height = diffY + 'px';
+            }
+        }
+    }
+
+    function end () {
+        self.resizing = false;
+        window.removeEventListener('touchmove', resize);
+    }
+
+};
 new Resize(terminal.terminalElt, document.getElementsByClassName('terminal-resize')[0]);
+new ResizeMobile(terminal.terminalElt, document.getElementsByClassName('terminal-resize')[0]);

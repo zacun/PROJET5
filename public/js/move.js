@@ -15,6 +15,7 @@ var Move = function (elementToMove, elementForMoving) {
     window.addEventListener('mouseup', end);
     
     function begin (e) {
+        e.preventDefault();
         self.moving = true;
         var rect = self.elementToMove.getBoundingClientRect();
         self.diffX = e.clientX - rect.x;
@@ -24,6 +25,7 @@ var Move = function (elementToMove, elementForMoving) {
     }
     
     function move (e) {
+        e.preventDefault();
         if (self.moving) {
             self.elementToMove.style.left = e.clientX - self.diffX + 'px';
             self.elementToMove.style.top = e.clientY - self.diffY + 'px';
@@ -87,4 +89,6 @@ var MoveMobile = function (elementToMove, elementForMoving) {
 
 };
 new Move(terminal.terminalElt, document.getElementsByClassName('terminal-name')[0]);
-new MoveMobile(terminal.terminalElt, document.getElementsByClassName('terminal-name')[0]);
+if (window.matchMedia('(min-width: 1100px)')) {
+    new MoveMobile(terminal.terminalElt, document.getElementsByClassName('terminal-name')[0]);
+}
